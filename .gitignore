@@ -2,3 +2,8 @@
 *.log
 *.out
 main.pdf
+_region_.tex
+*~
+main.blg
+*.synctex.gz
+prv_main.fmt

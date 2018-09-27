@@ -391,6 +391,7 @@ Mostre que $G$ tem uma trilha fechada se e somente se $G$ possui um circuito.
 
 
 \section{Conexidade}
+\label{conn}
 
 Uma \emph{partição} de um conjunto $V$ é uma coleção de subconjuntos não vazios de $V$, dois a dois disjuntos, cuja união é o próprio $V$. Cada um desses subconjuntos de~$V$ é chamado de \emph{parte}. Por exemplo, $\big\{\{1, 5, 7\}, \{2, 6\}, \{3, 4, 8\}\big\}$ é uma partição do conjunto $\{1, 2, \dots, 8\}$ nas partes $\{1, 5, 7\}, \{2, 6\}$ e $\{3, 4, 8\}$.
 
@@ -458,7 +459,7 @@ Vamos primeiro supor que~$G$ é conexo e vamos mostrar que para todo par de vér
   não-vazios~$X$ e~$Y$. Como~$X$ e~$Y$ são não-vazios podemos tomar~$x
   \in X$ e~$y \in Y$.  Por hipótese, existe um $(x,y)$-passeio de~$x$
   a~$y$. Vamos chamá-lo de~$P$ e representá-lo pela sequência~$v_0, v_1 \cdots v_k$ (note que $v_0 = x$ e $v_k = y$). Seja~$i$ o primeiro índice tal que~$v_i
-  \in Y$. Observe que tal índice existe e é no máximo $k$, pois $v_k = y$ e $y \in Y$. Certamente~$i > 0$ pois $v_0 = x$ e $x \in X$. Pela escolha de~$v_i$, a aresta~$v_{i-1}v_{i}$ possui uma extremidade em~$X$ e outra em~$Y$. Como a partição~$X,Y$ é arbitrária, concluimos que toda partição de $V_G$ possui uma aresta que ``cruza'' suas partes e, portanto, $G$ é conexo.
+  \in Y$. Observe que tal índice existe e é no máximo $k$, pois $v_k = y$ e $y \in Y$. Certamente~$i > 0$ pois $v_0 = x$ e $x \in X$. Pela escolha de~$v_i$, a aresta~$v_{i-1}v_{i}$ possui uma extremidade em~$X$ e outra em~$Y$. Como a partição~$\{X,Y\}$ é arbitrária, concluimos que toda bipartição de $V_G$ possui uma aresta que ``cruza'' suas partes e, portanto, $G$ é conexo.
 \end{proof}
 
 \begin{exer}
@@ -492,7 +493,73 @@ Mostre que, se~$G$ é um grafo conexo, então existe uma ordem~$v_1, \dots, v_n$
 
 Uma \emph{componente} de um grafo~$G$ é um subgrafo induzido conexo maximal de~$G$. 
 
+\subsection {Teorema de Menger}
 
+As notas desta seção foram baseadas na Seção 9.1 de~\cite{BondyMurty}. 
+
+Dado um grafo~$G$ e dois vértices distintos~$u,v \in V_G$, definimos a $(u,v)$-\emph{conexidade} como sendo o número máximo de $(u,v)$-caminhos internamente disjuntos no grafo~$G$. Para que esta definição esteja completa, precisamos dizer o que significa ``internamente disjuntos''. Dado um conjunto de $(u,v)$-caminhos $P_1, P_2, \dots, P_k$, dizemos que eles são \emph{internamente disjuntos} se, para todo par de índices $i \neq j$, os únicos vértices que estão em ambos~$P_i$ e~$P_j$ são as suas extremidades, ou seja, os vértices $u$ e~$v$. Vamos denotar a $(u,v)$-conexidade por $p(u,v)$.
+
+\begin{exem}
+No grafo $K_n$, dois vértices $u,v$ estão ligados por um caminho de comprimento~1 (a aresta $uv$) e por $n-2$ caminhos internamente disjuntos de comprimento~$2$. Portanto, $p(u,v) = n - 1$.
+\end{exem}
+
+Se $S \subseteq V_G$ é um subconjunto de vértices, $u,v \not\in S$ e não existe $(u,v)$-caminho em $G[V \setminus S]$, então chamamos $S$ de conjunto $(u,v)$-\emph{separador} em~$G$. Note que, se $uv \in E_G$, então $G$ não possui conjunto $(u,v)$-separador. Para $uv \not\in E_G$, podemos denotar o tamanho mínimo de um conjunto $(u,v)$-separador por $c(u,v)$. 
+
+\begin{prop} Se~$G$ é um grafo qualquer e $u,v$ são vértices distintos e não adjacentes em~$G$, então
+  \begin{equation}
+    \label{eq:min_max_conn}
+     c(u,v) \geq p(u,v).
+  \end{equation}
+\end{prop}
+
+\begin{proof}
+Considere um conjunto $(u,v)$-separador $S$ e considere um conjunto $\mathcal{P}$ com $p(u,v)$ caminhos internamente disjuntos de~$u$ até~$v$. Se não existe $(u,v)$-caminho em $G[V \setminus S]$, então $S$ deve conter pelo menos um vértice de cada caminho em $\mathcal{P}$ e, portanto, devemos ter 
+\[ |S| \geq |P|. \]
+Como a desigualdade acima é válida para quaisquer escolhas de $S$ e $P$, segue a validade da proposição.
+\end{proof}
+
+Veremos mais adiante, no Teorema~\ref{teor:menger}, que relaciona as quantidades $p(u,v)$ e $c(u,v)$. Esse resultado, conhecido como Teorema de Menger, afirma que a desigualdade~\eqref{eq:min_max_conn} vale com igualdade.
+
+Talvez a prova mais simples do Teorema de Menger seja a que faz uso da teoria de fluxos em redes. Neste texto, porém, vamos reproduzir uma prova de Göring~\cite{Goring}. Para tanto, precisamos de mais uma definição. Dados um grafo~$G$ e um subconjunto de vértices $Y \subseteq V_G$, definimos a \emph{contração} de~$Y$ em~$G$ como sendo o grafo $G/Y$ com
+\begin{align*}
+  V_{G/Y} &= (V_G \setminus Y) \cup {y}\\
+  E_{G/Y} &= \{ uv \colon u,v \in V_G \setminus Y\} \cup \{uy \colon \exists\,x\in Y ux \in E_G\}
+\end{align*}
+onde $y$ é um novo vértice. Ou seja, $G/Y$ é obtido removend-se $Y$ (e todas as arestas incidentes a $Y$),   
+
+XXXXX
+
+
+
+Diz-se de $G/Y$ que é o grafo obtido \emph{contraindo-se} o conjunto~$Y$ a um único vértice. 
+
+\begin{teor}
+\label{teor:menger}
+Se~$G$ é um grafo qualquer e $u,v$ são vértices distintos e não adjacentes em~$G$, então
+\begin{equation}
+  \label{eq:min_max_conn2}
+  c(u,v) = p(u,v).
+\end{equation}
+\end{teor}
+
+\begin{proof}
+  A prova é por indução em~$m$. O caso base, na verdade, são infinitos casos: devemos provar que o teorema é válido para todos os grafos vazios ($m = 0$) com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices distintos $u,v$, não há caminho de $u$ a~$v$. Portanto, $p(u,v) = c(u,v) = 0$.
+
+Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m > 0$ arestas e sejam $u,v$ dois vértices distintos de~$G$. Vamos supor, como hipótese de indução, que qualquer grafo com $m - 1$ arestas satisfaz~\eqref{eq:min_max_conn2}.
+
+Vamos primeiro considerar o caso em que toda aresta de~$G$ incide em~$u$ ou em~$v$. Neste caso, tome $S$ como sendo o conjunto de vértices que são adjacentes, simultaneamente, a~$u$ e a~$v$ em~$G$. Tal conjunto é $(u,v)$-separador e possui a mesma cardinalidade que o conjunto de $(u,v)$-caminhos internamente disjuntos definido por
+\[ \mathcal{P} = \{uxv \colon x \in S\}. \]
+Da existência de $S$ e $\mathcal{P}$ acima, segue a igualdade em~\eqref{eq:min_max_conn2}.
+
+Portanto podemos supor que existe uma aresta~$e \in E_G$ que não incide em~$u$, nem em~$v$. Considere~$G' = G - e$. Pela hipótese de indução, sabemos que~$G'$ satisfaz~\eqref{eq:min_max_conn2}. Para facilitar a escrita, vamos usar $c,c',p,p'$ para denotar as quantidades
+\begin{align*}
+  c &= c_G(u,v),\\
+  c' &= c_{G-e}(u,v),\\
+  p &= p_G(u,v),\\
+  p' &= p_{G-e}(u,v).
+\end{align*}
+Observe que, pelo fato de $G'$ ser subgrafo de~$G$, devemos ter $p'\leq p$ e $c'\leq c$. Por outro lado, $c'$ não pode ser muito menor que $c$, nem $p'$ pode ser muito menor que $p$. Você consegue 
+\end{proof}
 \section{Mais exemplos de grafos}
 
 $\rhd$ O hipercubo $Q_k$\\
@@ -539,4 +606,7 @@ Um grafo $G$ é bipartido se e somente se $G$ não possui um circuito ímpar.
 O Exercício~\ref{exer:cimpar} acima estabelece uma das direções da proposição. Resta mostrar a direção recíproca. Mais especificamente, resta mostrar que um grafo que não possui um circuito ímpar é bipartido. 
 Note também que, pelo Exercício~\ref{exer:uni_bip}, se cada componente conexa de~$G$ for um grafo bipartido, então~$G$ é bipartido.
 \end{proof}
+
+\bibliographystyle{plain}
+\bibliography{main.bib}
 \end{document}
