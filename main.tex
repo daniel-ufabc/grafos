@@ -62,7 +62,7 @@ O grafo do Exemplo~\ref{exem:umgrafo} pode ser representado de diversos modos em
 \end{figure}
 \end{exem}
 
-Para simplificar a notação, é comum escrever $uv$ em vez de $\{u,v\}$ para denotar uma aresta. Note que é a mesma coisa escrever~$uv$ ou~$vu$.
+Para simplificar a notação, é comum escrever $uv$ (ou~$vu$) em vez de $\{u,v\}$ para denotar um par não ordenado.
 
 Se $uv$ é uma aresta do grafo, diz-se que $u$ e $v$ são \emph{adjacentes} ou \emph{vizinhos} ou ainda que $u$ e $v$ estão ``ligados por uma aresta'' no grafo. Também se diz que $u$ e $v$ são \emph{extremidades} da aresta $uv$ e que $u$ e $v$ \emph{incidem} na aresta $uv$.  A \emph{vizinhança} de um vértice $u \in V$ é o conjunto de vizinhos de $u$, que é denotado por $N(u)$:
 \[ N(u) = \{v \in V \colon uv \in E\}. \]
@@ -72,7 +72,7 @@ Neste curso, vamos tratar somente de grafos com conjunto de vértices finitos, m
 
 %% B&M 1.1.1
 \begin{exer}
-Mostre que $m \leq {n \choose 2}$.
+Mostre que $m \leq \binom{n}{2}$.
 \end{exer}
 
 \subsection{Exemplos}
@@ -346,7 +346,7 @@ Para um grafo $G$ e vértice $v \in V_G$, escreva $G - v$ como um grafo induzido
 
 %\noindent De maneira análoga, dado um grafo $G$ e um subconjunto de arestas $F \subseteq E_G$, podemos definir o \emph{subgrafo gerado} por $F$ como sendo o grafo $G[F] = (V_G, F)$, ou seja, $G[F]$ é o subgrafo de $G$ que possui todos os vértices de $G$, mas possui somente as arestas do subconjunto $F$.
 
-\subsection{A notação $G \subseteq H$}
+\subsection{A notação \texorpdfstring{$G \subseteq H$}{G subconjunto de H}}
 
 A definição de subgrafos é análoga à definição de subconjuntos. Isso tanto é verdade que é quase tentador escrever $G \subseteq H$ para denotar que $G$ é subgrafo de $H$. De fato, podemos usar essa notação quando $G$ for subgrafo de $H$, mas essa notação denota algo mais geral.
 
