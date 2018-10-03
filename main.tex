@@ -10,6 +10,8 @@
 \usepackage{graphicx}
 \usepackage{euler}
 \usepackage[pdfstartview=FitH]{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % http://ctan.org/pkg/pifont (for checkmarks)
 \usepackage{pifont}                 
@@ -17,6 +19,7 @@
 \newcommand{\xmark}{\ding{55}}
 
 \newtheorem{teor}{Teorema}[section]
+\newtheorem{lema}[teor]{Lema}
 \newtheorem{prop}[teor]{Proposição}
 \newtheorem{coro}[teor]{Corolário}
 \theoremstyle{definition}
@@ -341,7 +344,7 @@ O grafo $F$ do Exemplo~\ref{exem:subgraph} não é subgrafo induzido do grafo~$G
 \end{exer}
 
 \begin{exer}
-Para um grafo $G$ e vértice $v \in V_G$, escreva $G - v$ como um grafo induzido por um conjunto de vértices.
+Para um grafo $G$ e vértice $v \in V_G$, escreva $G - v$ como um grafo induzido por um conjunto de vértices, ou seja, determine $X$ tal que $G - v = G[X]$.
 \end{exer}
 
 %\noindent De maneira análoga, dado um grafo $G$ e um subconjunto de arestas $F \subseteq E_G$, podemos definir o \emph{subgrafo gerado} por $F$ como sendo o grafo $G[F] = (V_G, F)$, ou seja, $G[F]$ é o subgrafo de $G$ que possui todos os vértices de $G$, mas possui somente as arestas do subconjunto $F$.
@@ -350,14 +353,14 @@ Para um grafo $G$ e vértice $v \in V_G$, escreva $G - v$ como um grafo induzido
 
 A definição de subgrafos é análoga à definição de subconjuntos. Isso tanto é verdade que é quase tentador escrever $G \subseteq H$ para denotar que $G$ é subgrafo de $H$. De fato, podemos usar essa notação quando $G$ for subgrafo de $H$, mas essa notação denota algo mais geral.
 
-Em Teoria de Grafos, é mais comum nos preocuparmos com a forma (\emph{morfo}) do grafo do que com os rótulos dos vértices. Por esse motivo, às vezes escrevemos que ``$G$ é subgrafo de $H$'' quando, na verdade, deveríamos escrever ``$G$ é isomorfo a um subgrafo de $H$''. Vamos usar a notação $G \subseteq H$ para significar justamente isso: que $G$ é isomorfo a um subgrafo de $H$. Também dizemos, nesse caso, que $G$ contém uma \emph{cópia} de $H$.
+Em Teoria de Grafos, é mais comum nos preocuparmos com a forma (\emph{morfo}) do grafo do que com os rótulos dos vértices. Por esse motivo, às vezes escrevemos que ``$G$ é subgrafo de $H$'' quando, na verdade, deveríamos escrever ``$G$ é isomorfo a um subgrafo de $H$''. Vamos usar a notação $G \subseteq H$ para significar justamente isso: que $G$ é isomorfo a um subgrafo de $H$. Também dizemos, nesse caso, que $H$ contém uma \emph{cópia} de $G$.
 
 \section{Passeios, caminhos, circuitos e trilhas}
 
 Um \emph{passeio} num grafo~$G$ é uma seqüência~$v_0 v_1
 \cdots v_k$ de vértices em~$V_G$ com~$v_{i-1} v_i \in E_G$ para todo~$i \in \{1,2,\dots,k\}$. Portanto, o que torna uma sequência de vértices um passeio em~$G$ é a restrição de que vértices consecutivos da sequência devem estar ligados por uma aresta no grafo. Desse modo, dizemos que as arestas \emph{percorridas} por esse passeio são as arestas $v_0v_1, v_1v_2, \dots, v_{k-1}v_k$.  
 
-Seja $P = v_0v_1 \cdots v_k$ um passeio em um grafo $G$. Os vértices $v_0$ e $v_k$ são chamados de \emph{extremidades} do passeio. Para vértices~$u,v \in V_G$, um $(u,v)$-\textit{passeio} em~$G$ é um passeio cujas extremidades são~$u$ e~$v$. Dizemos que $P$ é \emph{fechado} se $v_0 = v_k$, caso contrário, dizemos que ele é \emph{aberto}. Quando os vértices de $P$ são dois a dois distintos, dizemos que $P$ é um \emph{caminho}. Quando os vértices de $P$ são dois a dois distintos exceto por $v_0 = v_k$, dizemos que $P$ é um \emph{circuito} (em alguns lugares do Brasil isso é chamado de \emph{ciclo}). Quando as arestas percorridas por $P$ são duas a duas distintas, dizemos que $P$ é uma \emph{trilha}. O \emph{comprimento} de $P$ é o número arestas percorridas por $P$ (contando-se repetições); portanto, o comprimento de $P$ acima é $k$. Denotamos o comprimento de $P$ por $|P|$.
+Seja $P = v_0v_1 \cdots v_k$ um passeio em um grafo $G$. Os vértices $v_0$ e $v_k$ são chamados de \emph{extremidades} do passeio. Para vértices~$u,v \in V_G$, um $(u,v)$-\textit{passeio} em~$G$ é um passeio cujas extremidades são~$u$ e~$v$. Dizemos que $P$ é \emph{fechado} se $v_0 = v_k$, caso contrário, dizemos que ele é \emph{aberto}. Quando os vértices de $P$ são dois a dois distintos, dizemos que $P$ é um \emph{caminho}. Quando os vértices de $P$ são dois a dois distintos exceto por $v_0 = v_k$, dizemos que $P$ é um \emph{circuito} ou um \emph{ciclo}. Quando as arestas percorridas por $P$ são duas a duas distintas, dizemos que $P$ é uma \emph{trilha}. O \emph{comprimento} de $P$ é o número arestas percorridas por $P$ (contando-se repetições); portanto, o comprimento de $P$ acima é $k$. Denotamos o comprimento de $P$ por $|P|$.
 
 \begin{exem}
 \label{exem:walk}
@@ -369,7 +372,7 @@ Seja $G$ um grafo e sejam $u,v \in V_G$ dois vértices distintos. O grafo $G$ po
 \end{prop}
 
 \begin{proof}
-Primeiramente, observe que todo caminho é um passeio. Portanto, se $G$ tem um $(u,v)$-caminho, então ele obviamente tem um $(u,v)$-passeio.
+Primeiramente, observe que, por definição, todo caminho é um passeio. Portanto, se $G$ tem um $(u,v)$-caminho, então ele também possui um $(u,v)$-passeio.
 
 Resta provar a recíproca: todo grafo que possui um $(u,v)$-passeio também possui um $(u,v)$-caminho. Para mostrar essa direção, vamos mostrar que qualquer $(u,v)$-passeio de comprimento mínimo em $G$ é um caminho. Seja $P = v_0v_1 \cdots v_k$ um $(u,v)$-passeio de comprimento mínimo em $G$ (note que $v_0 = u$ e $v_k = v$). Se os vértices dessa sequência são dois a dois distintos então acabou: $P$ é um caminho. Suponha, então, com a finalidade de chegarmos a uma contradição, que algum vértice do grafo apareça repetidas vezes em $P$, ou seja, suponha que existam índices $i < j$, com $0 \leq i < j \leq k$, tais que $v_i = v_j$. 
 Considere a sequência $P'$ definida por $P' = v_0 \cdots v_i v_{j+1} \cdots v_k$. Vamos argumentar que:
@@ -493,73 +496,163 @@ Mostre que, se~$G$ é um grafo conexo, então existe uma ordem~$v_1, \dots, v_n$
 
 Uma \emph{componente} de um grafo~$G$ é um subgrafo induzido conexo maximal de~$G$. 
 
-\subsection {Teorema de Menger}
+\subsection {Conjuntos de caminhos e conjuntos separadores }
 
 As notas desta seção foram baseadas na Seção 9.1 de~\cite{BondyMurty}. 
 
-Dado um grafo~$G$ e dois vértices distintos~$u,v \in V_G$, definimos a $(u,v)$-\emph{conexidade} como sendo o número máximo de $(u,v)$-caminhos internamente disjuntos no grafo~$G$. Para que esta definição esteja completa, precisamos dizer o que significa ``internamente disjuntos''. Dado um conjunto de $(u,v)$-caminhos $P_1, P_2, \dots, P_k$, dizemos que eles são \emph{internamente disjuntos} se, para todo par de índices $i \neq j$, os únicos vértices que estão em ambos~$P_i$ e~$P_j$ são as suas extremidades, ou seja, os vértices $u$ e~$v$. Vamos denotar a $(u,v)$-conexidade por $p(u,v)$.
+Dado um grafo~$G$ e dois vértices distintos~$x,y \in V_G$, definimos a $(x,y)$-\emph{conexidade} como sendo o número máximo de $(x,y)$-caminhos internamente disjuntos no grafo~$G$. Para que esta definição esteja completa, precisamos dizer o que significa ``internamente disjuntos''. Dado um conjunto de $(x,y)$-caminhos $Q_1, Q_2, \dots, Q_k$, dizemos que eles são \emph{internamente disjuntos} se, para todo par de índices $i \neq j$, os únicos vértices que estão em ambos~$Q_i$ e~$Q_j$ são as suas extremidades, ou seja, os vértices $x$ e~$y$. Vamos denotar a $(x,y)$-conexidade por $p(x,y)$.
 
 \begin{exem}
-No grafo $K_n$, dois vértices $u,v$ estão ligados por um caminho de comprimento~1 (a aresta $uv$) e por $n-2$ caminhos internamente disjuntos de comprimento~$2$. Portanto, $p(u,v) = n - 1$.
+No grafo completo $K_n$, quaisquer dois vértices $u,v$ estão ligados por um caminho de comprimento~1 (através da aresta $uv$) e por $n-2$ caminhos internamente disjuntos de comprimento~$2$. Portanto, para qualque par de vértices $u,v$ no $K_n$, vale $p(u,v) = n - 1$.
 \end{exem}
 
-Se $S \subseteq V_G$ é um subconjunto de vértices, $u,v \not\in S$ e não existe $(u,v)$-caminho em $G[V \setminus S]$, então chamamos $S$ de conjunto $(u,v)$-\emph{separador} em~$G$. Note que, se $uv \in E_G$, então $G$ não possui conjunto $(u,v)$-separador. Para $uv \not\in E_G$, podemos denotar o tamanho mínimo de um conjunto $(u,v)$-separador por $c(u,v)$. 
+Se $S \subseteq V_G$ é um subconjunto de vértices, $x,y \not\in S$ e não existe $(x,y)$-caminho em $G[V \setminus S]$, então chamamos $S$ de conjunto $(x,y)$-\emph{separador} em~$G$. Note que, se $xy \in E_G$, então $G$ não possui conjunto $(x,y)$-separador. Para $xy \not\in E_G$, podemos denotar o tamanho mínimo de um conjunto $(x,y)$-separador por $c(x,y)$. 
 
-\begin{prop} Se~$G$ é um grafo qualquer e $u,v$ são vértices distintos e não adjacentes em~$G$, então
+Veremos mais adiante, o Teorema~\ref{teor:menger}, que estabelece uma relação entre as quantidades $p(x,y)$ e $c(x,y)$. Comecemos por observar uma desigualdade simples envolvendo esses parâmetros. 
+
+\begin{prop} 
+\label{prop:easy_ineq_menger}
+Se~$G$ é um grafo qualquer e $x,y$ são vértices distintos e não adjacentes em~$G$, então
   \begin{equation}
     \label{eq:min_max_conn}
-     c(u,v) \geq p(u,v).
+     c(x,y) \geq p(x,y).
   \end{equation}
 \end{prop}
 
 \begin{proof}
-Considere um conjunto $(u,v)$-separador $S$ e considere um conjunto $\mathcal{P}$ com $p(u,v)$ caminhos internamente disjuntos de~$u$ até~$v$. Se não existe $(u,v)$-caminho em $G[V \setminus S]$, então $S$ deve conter pelo menos um vértice de cada caminho em $\mathcal{P}$ e, portanto, devemos ter 
-\[ |S| \geq |P|. \]
-Como a desigualdade acima é válida para quaisquer escolhas de $S$ e $P$, segue a validade da proposição.
+Considere um conjunto $(x,y)$-separador $S$ e considere um conjunto $\mathcal{P}$ com caminhos internamente disjuntos de~$x$ até~$y$. Se não existe $(x,y)$-caminho em $G[V \setminus S]$, então $S$ deve conter pelo menos um vértice de cada caminho em $\mathcal{P}$ e, portanto, devemos ter 
+\[ |S| \geq |\mathcal{P}|. \]
+Como a desigualdade acima é válida para quaisquer escolhas de $S$ e $\mathcal{P}$, segue a validade da inequação~\eqref{eq:min_max_conn}.
 \end{proof}
 
-Veremos mais adiante, no Teorema~\ref{teor:menger}, que relaciona as quantidades $p(u,v)$ e $c(u,v)$. Esse resultado, conhecido como Teorema de Menger, afirma que a desigualdade~\eqref{eq:min_max_conn} vale com igualdade.
+\begin{exer}
+\label{exer:min_max}
+Seja $S$ um conjunto $(x,y)$-separador e seja $\mathcal{P}$ um conjunto de $(x,y)$-caminhos internamente disjuntos. Mostre que, se $|S| = |\mathcal{P}|$, então $S$ é mínimo e $\mathcal{P}$ é máximo.
+\end{exer}
 
-Talvez a prova mais simples do Teorema de Menger seja a que faz uso da teoria de fluxos em redes. Neste texto, porém, vamos reproduzir uma prova de Göring~\cite{Goring}. Para tanto, precisamos de mais uma definição. Dados um grafo~$G$ e um subconjunto de vértices $Y \subseteq V_G$, definimos a \emph{contração} de~$Y$ em~$G$ como sendo o grafo $G/Y$ com
+O Teorema~\ref{teor:menger}, conhecido como Teorema de Menger, afirma que a recíproca do Exercício~\ref{exer:min_max} é verdade. Ou seja, ele afirma que, na realidade, a desigualdade~\eqref{eq:min_max_conn} é uma igualdade.
+
+Talvez a prova mais simples do Teorema de Menger seja a que faz uso da teoria de fluxos em redes. Neste texto, porém, vamos reproduzir uma prova de Göring~\cite{Goring}. Para tanto, precisamos de mais uma definição. 
+
+\subsubsection{Contração de um conjunto de vértices}
+
+Seja $G$ um grafo e seja $Y \subseteq V_G$ um subconjunto não vazio de vértices. Vamos denotar a \emph{contração} de~$Y$ em~$G$ por $G/Y$, e vamos definir esse grafo $G/Y$ como sendo o grafo obtido de $G$ depois de
+\begin{enumerate}
+\item remover do grafo todas as arestas que incidem em vértices de $Y$;
+\item \label{contr:step1} escolher $y \in Y$;
+\item remover do grafo todos os vértices de $Y$, exceto o vértice $y$; 
+\item para cada aresta $xz \in E_G$ com $x \not\in Y$ e $z \in Y$, acrescentar uma aresta $xy$, se tal aresta ainda não foi acrescentada.
+\end{enumerate}
+% remoção de $Y$ (e de todas as arestas incidentes a $Y$), pelo acrescimo de um novo vértice~$y$ e, para todo $u \in V_G \setminus Y$, pelo acrescimo da aresta $uy$ se existir pelo menos uma aresta $ux \in E_G$ para algum $x \in Y$. Ou seja, $G/Y$ é o grafo
+Ou seja, $G/Y = (V,E)$ onde
 \begin{align*}
-  V_{G/Y} &= (V_G \setminus Y) \cup {y}\\
-  E_{G/Y} &= \{ uv \colon u,v \in V_G \setminus Y\} \cup \{uy \colon \exists\,x\in Y ux \in E_G\}
+  V &= (V_G \setminus Y) \cup \{y\}\\
+  E &= \{ uv \in E_G \colon u,v \not\in Y\} \cup \{xy \colon x \in V_G \setminus Y \text{ e } \exists\,z\in Y \text{ tal que }xz \in E_G\}.
 \end{align*}
-onde $y$ é um novo vértice. Ou seja, $G/Y$ é obtido removend-se $Y$ (e todas as arestas incidentes a $Y$),   
-
-XXXXX
 
 
+\begin{exem}
+No exemplo da Figura~\ref{fig:contr} abaixo, todo vértice vizinho de alguém em $Y$, depois da contração, será vizinho de $y$.
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[]{contracao.pdf}
+  \caption{o grafo~$G$ e o conjunto $Y$.}
+  \label{fig:contr1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[]{contraido.pdf}
+  \caption{o grafo~$G/Y$.}
+  \label{fig:contr2}
+\end{subfigure}
+\caption{a contração de um conjunto $Y$ no grafo~$G$.}
+\label{fig:contr}
+\end{figure}
+\end{exem}
 
-Diz-se de $G/Y$ que é o grafo obtido \emph{contraindo-se} o conjunto~$Y$ a um único vértice. 
+\noindent Observe que a escolha do vértice $y$, no passo~\ref{contr:step1} da definição de $G/Y$, é irrelevante. 
+
+\subsubsection {Teorema de Menger}
+
+
+\begin{lema}
+\label{lema:c_contracted}
+Seja $G$ um grafo, seja $Y \subseteq V_G$ um subconjunto de vértices e, para um vértice $y \in Y$, seja $G/Y$ o grafo obtido contraindo-se o conjunto $Y$ ao vértice $y$. Se $x \in V_G \setminus Y$, então $c_{G/Y}(x,y) \geq c_G(x,y)$.
+\end{lema}
+
+\begin{proof}
+  Seja $S$ um conjunto $(x,y)$-separador em $G/Y$. Suponha, com a finalidade de chegarmos a uma contradição, que $S$ não seja um conjunto $(x,y)$-separador em $G$. Nesse caso, $G - S$ possui um $(x,y)$-caminho $v_0 v_1 \cdots v_k$ (e, portanto, $v_0 = x$ e $v_k = y$). Seja $i > 0$ o menor índice tal que $v_i \in Y$. Observe que tal índice existe e satisfaz $i \leq k$, pois $v_k = y$ e $y \in Y$. Assim, o caminho $v_0 v_1 \cdots v_{i-1} y$ é um $(x,y)$-caminho em $G/Y$ que evita $S$: uma contradição com a propriedade de que $S$ é $(x,y)$-separador em $G/Y$. 
+
+Podemos supor, então, que todo conjunto $(x,y)$-separador em $G/Y$ é também $(x,y)$-separador em $G$. Portanto, segue verdadeira a desigualdade almejada no enunciado.
+\end{proof}
+
 
 \begin{teor}
 \label{teor:menger}
-Se~$G$ é um grafo qualquer e $u,v$ são vértices distintos e não adjacentes em~$G$, então
+Se~$G$ é um grafo qualquer e $x,y$ são vértices distintos e não adjacentes em~$G$, então
 \begin{equation}
   \label{eq:min_max_conn2}
-  c(u,v) = p(u,v).
+  c(x,y) = p(x,y).
 \end{equation}
 \end{teor}
 
 \begin{proof}
-  A prova é por indução em~$m$. O caso base, na verdade, são infinitos casos: devemos provar que o teorema é válido para todos os grafos vazios ($m = 0$) com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices distintos $u,v$, não há caminho de $u$ a~$v$. Portanto, $p(u,v) = c(u,v) = 0$.
+  A prova é por indução em~$m$. O caso base, na verdade, são infinitos casos: devemos provar que o teorema é válido para todos os grafos vazios ($m = 0$) com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices distintos $x,y$, não há caminho de $x$ a~$y$. Portanto, $p(x,y) = c(x,y) = 0$.
 
-Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m > 0$ arestas e sejam $u,v$ dois vértices distintos de~$G$. Vamos supor, como hipótese de indução, que qualquer grafo com $m - 1$ arestas satisfaz~\eqref{eq:min_max_conn2}.
+Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m$ arestas, $m > 0$, e sejam $x,y$ dois vértices distintos de~$G$. Vamos supor, como hipótese de indução, que qualquer grafo com $m - 1$ arestas satisfaz~\eqref{eq:min_max_conn2}.
 
-Vamos primeiro considerar o caso em que toda aresta de~$G$ incide em~$u$ ou em~$v$. Neste caso, tome $S$ como sendo o conjunto de vértices que são adjacentes, simultaneamente, a~$u$ e a~$v$ em~$G$. Tal conjunto é $(u,v)$-separador e possui a mesma cardinalidade que o conjunto de $(u,v)$-caminhos internamente disjuntos definido por
-\[ \mathcal{P} = \{uxv \colon x \in S\}. \]
-Da existência de $S$ e $\mathcal{P}$ acima, segue a igualdade em~\eqref{eq:min_max_conn2}.
+Vamos primeiro considerar o caso em que toda aresta de~$G$ incide em~$x$ ou em~$y$. Neste caso, tome $S$ como sendo o conjunto de vértices que são adjacentes, simultaneamente, a~$x$ e a~$y$ em~$G$:
+\[ S = N(x) \cap N(y). \]
+ Tal conjunto é $(x,y)$-separador e possui a mesma cardinalidade que o conjunto de $(x,y)$-caminhos internamente disjuntos definido por
+\[ \mathcal{P} = \{xsy \colon s \in S\}. \]
+Da existência de $S$ e $\mathcal{P}$ acima, ambos com o mesmo número de elementos, segue a igualdade em~\eqref{eq:min_max_conn2}.
 
-Portanto podemos supor que existe uma aresta~$e \in E_G$ que não incide em~$u$, nem em~$v$. Considere~$G' = G - e$. Pela hipótese de indução, sabemos que~$G'$ satisfaz~\eqref{eq:min_max_conn2}. Para facilitar a escrita, vamos usar $c,c',p,p'$ para denotar as quantidades
+Portanto podemos supor que existe uma aresta~$e \in E_G$ que não incide em~$x$ e nem em~$y$. Considere~$G' = G - e$.  Para facilitar a escrita, vamos usar $c,c',p,p'$ para denotar as quantidades
 \begin{align*}
-  c &= c_G(u,v),\\
-  c' &= c_{G-e}(u,v),\\
-  p &= p_G(u,v),\\
-  p' &= p_{G-e}(u,v).
+  c &= c_G(x,y),\\
+  c' &= c_{G-e}(x,y),\\
+  p &= p_G(x,y),\\
+  p' &= p_{G-e}(x,y).
 \end{align*}
-Observe que, pelo fato de $G'$ ser subgrafo de~$G$, devemos ter $p'\leq p$ e $c'\leq c$. Por outro lado, $c'$ não pode ser muito menor que $c$, nem $p'$ pode ser muito menor que $p$. Você consegue 
+Pela hipótese de indução, sabemos que~$G'$ satisfaz~\eqref{eq:min_max_conn2}, ou seja, $p' = c'$. Observe que, pelo fato de $G'$ ser subgrafo de~$G$, devemos ter $p'\leq p$ e $c'\leq c$. Por outro lado, vamos argumentar que $c'$ não pode ser muito menor que $c$. De fato, se $S$ é um conjunto $(x,y)$-separador em $G-e$, então $S$ mais uma das extremidades da aresta $e$ é $(x,y)$-separador em $G$, portanto, $c' \geq c - 1$. %Com relação à $(u,v)$-conexidade, note que, em qualquer coleção de $(u,v)$-internamente disjuntos em $G$, a aresta $e$ pertence a, no máximo, um desses caminhos, o que nos leva a concluir que $p' \geq p - 1$.
+
+Juntando as informações do parágrafo anterior, temos
+\begin{equation}
+  \label{eq:p_c_relation}
+   p \geq p' = c' \geq c - 1.
+\end{equation}
+No caso de $p > c - 1$, pela Proposição~\ref{prop:easy_ineq_menger}, devemos ter $p = c$, e não resta nada a ser demonstrado. Suponhamos, então, que $p = c - 1$. Nesse caso, as desigualdades em~\eqref{eq:p_c_relation} devem ser todas justas:
+\[ p = p' = c' = c - 1.\]
+
+Seja $S$ um conjnto $(x,y)$-separador mínimo em $G'$. Note que 
+\begin{equation}
+  \label{eq:S_small}
+  |S| = c - 1.
+\end{equation}
+ Defina $X$ como o conjunto de vértices atingíveis a partir de~$x$ em $G' - S$ e seja $Y$ o conjunto de vértices atingíveis a partir de~$y$ em $G' - S$.
+
+Por~\eqref{eq:S_small}, sabemos que $S$ não é um conjunto $(u,v)$-separador de $G$; portanto, $G - S$ possui um $(x,y)$-caminho, e este deve percorrer a aresta $e$. Podemos concluir que uma das extremidades de $e$ está em $X$ e a outra está em $Y$.
+
+Terminar na lousa!
 \end{proof}
+
+
+Enunciar a versão do teorema de menger para caminhos aresta disjuntos
+
+
+Explicar o que é multigrafo
+
+Falar do Fan Lemma 
+
+
+
+
+
+
+
+
 \section{Mais exemplos de grafos}
 
 $\rhd$ O hipercubo $Q_k$\\
