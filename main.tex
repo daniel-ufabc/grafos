@@ -574,6 +574,8 @@ No exemplo da Figura~\ref{fig:contr} abaixo, todo vértice vizinho de alguém em
 
 \noindent Observe que a escolha do vértice $y$, no passo~\ref{contr:step1} da definição de $G/Y$, é irrelevante. 
 
+Na prova do Teorema de Menger, o conjunto $Y$ que iremos contrair é um par de vértices adjacentes, i.e. uma aresta $e \in E_G$. Nesse caso, escrevemos $G/e$ para denotar o grafo contraído.
+
 \subsubsection {Teorema de Menger}
 
 
@@ -585,13 +587,24 @@ Seja $G$ um grafo, seja $Y \subseteq V_G$ um subconjunto de vértices e, para um
 \begin{proof}
   Seja $S$ um conjunto $(x,y)$-separador em $G/Y$. Suponha, com a finalidade de chegarmos a uma contradição, que $S$ não seja um conjunto $(x,y)$-separador em $G$. Nesse caso, $G - S$ possui um $(x,y)$-caminho $v_0 v_1 \cdots v_k$ (e, portanto, $v_0 = x$ e $v_k = y$). Seja $i > 0$ o menor índice tal que $v_i \in Y$. Observe que tal índice existe e satisfaz $i \leq k$, pois $v_k = y$ e $y \in Y$. Assim, o caminho $v_0 v_1 \cdots v_{i-1} y$ é um $(x,y)$-caminho em $G/Y$ que evita $S$: uma contradição com a propriedade de que $S$ é $(x,y)$-separador em $G/Y$. 
 
-Podemos supor, então, que todo conjunto $(x,y)$-separador em $G/Y$ é também $(x,y)$-separador em $G$. Portanto, segue verdadeira a desigualdade almejada no enunciado.
+Podemos supor, então, que todo conjunto $(x,y)$-separador em $G/Y$ é também $(x,y)$-separador em $G$. Portanto, é verdadeira a desigualdade almejada no enunciado.
+\end{proof}
+
+\begin{lema}
+\label{lema:all_paths_size_2}
+Seja $G$ um grafo e sejam $x,y \in V_G$ dois vértices distintos. Seja $\mathcal{P}$ uma coleção máxima de $(x,y)$-caminhos internamente disjuntos em~$G$ e seja $S$ o conjunto de vértices que estão em algum $(x,y)$-caminho de~$\mathcal{P}$. Se todo vértice $s \in S$ é adjacente a ambos~$x$ e~$y$, então $p(x,y) = c(x,y)$.
+\end{lema}
+
+\begin{proof}
+Note que $S$ é um conjunto $(x,y)$-separador em~$G$. Seja $\mathcal{Q}$ a coleção de $(x,y)$-caminhos internamente disjuntos definida por
+\[ \mathcal{Q} = \{xsy \colon s \in S\}. \]
+Note que $|S| = |\mathcal{Q}|$. Pelo Exercício~\ref{exer:min_max}, temos que $c(x,y) = p(x,y)$.
 \end{proof}
 
 
 \begin{teor}
 \label{teor:menger}
-Se~$G$ é um grafo qualquer e $x,y$ são vértices distintos e não adjacentes em~$G$, então
+Se~$G$ é um grafo de ordem $n \geq 2$ e $x,y$ são vértices distintos e não adjacentes em~$G$, então
 \begin{equation}
   \label{eq:min_max_conn2}
   c(x,y) = p(x,y).
@@ -599,24 +612,18 @@ Se~$G$ é um grafo qualquer e $x,y$ são vértices distintos e não adjacentes e
 \end{teor}
 
 \begin{proof}
-  A prova é por indução em~$m$. O caso base, na verdade, são infinitos casos: devemos provar que o teorema é válido para todos os grafos vazios ($m = 0$) com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices distintos $x,y$, não há caminho de $x$ a~$y$. Portanto, $p(x,y) = c(x,y) = 0$.
+  A prova é por indução em~$m$. Para estabelecermos a base da indução, devemos provar que o teorema vale para todo o grafo vazio com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices distintos $x,y$, não há caminho de $x$ a~$y$. Portanto, $p(x,y) = c(x,y) = 0$.
 
-Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m$ arestas, $m > 0$, e sejam $x,y$ dois vértices distintos de~$G$. Vamos supor, como hipótese de indução, que qualquer grafo com $m - 1$ arestas satisfaz~\eqref{eq:min_max_conn2}.
+Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m > 0$ arestas, e sejam $x,y$ dois vértices distintos de~$G$. Vamos supor, como hipótese de indução (forte), que qualquer grafo com menos que $m$ arestas satisfaz~\eqref{eq:min_max_conn2}. Seja $\mathcal{P}$ uma coleção de $(x,y)$-caminhos internamente disjuntos em~$G$ com $|\mathcal{P}| = p(x,y)$. 
 
-Vamos primeiro considerar o caso em que toda aresta de~$G$ incide em~$x$ ou em~$y$. Neste caso, tome $S$ como sendo o conjunto de vértices que são adjacentes, simultaneamente, a~$x$ e a~$y$ em~$G$:
-\[ S = N(x) \cap N(y). \]
- Tal conjunto é $(x,y)$-separador e possui a mesma cardinalidade que o conjunto de $(x,y)$-caminhos internamente disjuntos definido por
-\[ \mathcal{P} = \{xsy \colon s \in S\}. \]
-Da existência de $S$ e $\mathcal{P}$ acima, ambos com o mesmo número de elementos, segue a igualdade em~\eqref{eq:min_max_conn2}.
-
-Portanto podemos supor que existe uma aresta~$e \in E_G$ que não incide em~$x$ e nem em~$y$. Considere~$G' = G - e$.  Para facilitar a escrita, vamos usar $c,c',p,p'$ para denotar as quantidades
+Pelo Lema~\ref{lema:all_paths_size_2}, podemos supor que existe um vértice $v$ em um dos caminhos de~$\mathcal{P}$ que é vizinho de~$x$ mas não de~$y$. Considere o grafo $G/xv$ como sendo o grafo resultante da contração da aresta $e$ ao vértice $x$. Note que~$\mathcal{P}$ em~$G$ corresponde a uma coleção~$\mathcal{P}/xv$ de $(x,y)$-caminhos internamente disjuntos em~$G/xv$ e que $|\mathcal{P}| = |\mathcal{P}/xv|$. Para facilitar a escrita, vamos usar $c,c',p,p'$ para denotar as quantidades
 \begin{align*}
   c &= c_G(x,y),\\
-  c' &= c_{G-e}(x,y),\\
+  c' &= c_{G/xv}(x,y),\\
   p &= p_G(x,y),\\
-  p' &= p_{G-e}(x,y).
+  p' &= p_{G/xv}(x,y).
 \end{align*}
-Pela hipótese de indução, sabemos que~$G'$ satisfaz~\eqref{eq:min_max_conn2}, ou seja, $p' = c'$. Observe que, pelo fato de $G'$ ser subgrafo de~$G$, devemos ter $p'\leq p$ e $c'\leq c$. Por outro lado, vamos argumentar que $c'$ não pode ser muito menor que $c$. De fato, se $S$ é um conjunto $(x,y)$-separador em $G-e$, então $S$ mais uma das extremidades da aresta $e$ é $(x,y)$-separador em $G$, portanto, $c' \geq c - 1$. %Com relação à $(u,v)$-conexidade, note que, em qualquer coleção de $(u,v)$-internamente disjuntos em $G$, a aresta $e$ pertence a, no máximo, um desses caminhos, o que nos leva a concluir que $p' \geq p - 1$.
+Pela hipótese de indução, sabemos que~$G/xv$ satisfaz~\eqref{eq:min_max_conn2}, ou seja, $p' = c'$. , pelo fato de $G'$ ser subgrafo de~$G$, devemos ter $p'\leq p$ e $c'\leq c$. Por outro lado, vamos argumentar que $c'$ não pode ser muito menor que $c$. De fato, se $S$ é um conjunto $(x,y)$-separador em $G-e$, então $S$ mais uma das extremidades da aresta $e$ é $(x,y)$-separador em $G$, portanto, $c' \geq c - 1$. %Com relação à $(u,v)$-conexidade, note que, em qualquer coleção de $(u,v)$-internamente disjuntos em $G$, a aresta $e$ pertence a, no máximo, um desses caminhos, o que nos leva a concluir que $p' \geq p - 1$.
 
 Juntando as informações do parágrafo anterior, temos
 \begin{equation}
