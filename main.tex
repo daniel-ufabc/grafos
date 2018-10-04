@@ -536,74 +536,74 @@ Seja $S$ um conjunto $(x,y)$-separador e seja $\mathcal{P}$ um conjunto de $(x,y
 
 O Teorema~\ref{teor:menger}, conhecido como Teorema de Menger, afirma que a recíproca do Exercício~\ref{exer:min_max} é verdade. Ou seja, ele afirma que, na realidade, a desigualdade~\eqref{eq:min_max_conn} é uma igualdade.
 
-%Talvez a prova mais simples do Teorema de Menger seja a que faz uso da teoria de fluxos em redes. Neste texto, porém, vamos reproduzir uma prova de Göring~\cite{Goring}. Para tanto, precisamos de mais uma definição. 
+Talvez a prova mais simples do Teorema de Menger seja a que faz uso da teoria de fluxos em redes. Neste texto, porém, vamos reproduzir uma prova de Göring~\cite{Goring}. Para tanto, precisamos de mais uma definição. 
 
-% \subsubsection{Contração de um conjunto de vértices}
+\subsubsection{Contração de um conjunto de vértices}
 
-% Seja $G$ um grafo e seja $Y \subseteq V_G$ um subconjunto não vazio de vértices. Vamos denotar a \emph{contração} de~$Y$ em~$G$ por $G/Y$, e vamos definir esse grafo $G/Y$ como sendo o grafo obtido de $G$ depois de
-% \begin{enumerate}
-% \item remover do grafo todas as arestas que incidem em vértices de $Y$;
-% \item \label{contr:step1} escolher $y \in Y$;
-% \item remover do grafo todos os vértices de $Y$, exceto o vértice $y$; 
-% \item para cada aresta $xz \in E_G$ com $x \not\in Y$ e $z \in Y$, acrescentar uma aresta $xy$, se tal aresta ainda não foi acrescentada.
-% \end{enumerate}
-% % remoção de $Y$ (e de todas as arestas incidentes a $Y$), pelo acrescimo de um novo vértice~$y$ e, para todo $u \in V_G \setminus Y$, pelo acrescimo da aresta $uy$ se existir pelo menos uma aresta $ux \in E_G$ para algum $x \in Y$. Ou seja, $G/Y$ é o grafo
-% Ou seja, $G/Y = (V,E)$ onde
-% \begin{align*}
-%   V &= (V_G \setminus Y) \cup \{y\}\\
-%   E &= \{ uv \in E_G \colon u,v \not\in Y\} \cup \{xy \colon x \in V_G \setminus Y \text{ e } \exists\,z\in Y \text{ tal que }xz \in E_G\}.
-% \end{align*}
+Seja $G$ um grafo e seja $Y \subseteq V_G$ um subconjunto não vazio de vértices. Vamos denotar a \emph{contração} de~$Y$ em~$G$ por $G/Y$, e vamos definir esse grafo $G/Y$ como sendo o grafo obtido de $G$ depois de
+\begin{enumerate}
+\item remover do grafo todas as arestas que incidem em vértices de $Y$;
+\item \label{contr:step1} escolher $y \in Y$;
+\item remover do grafo todos os vértices de $Y$, exceto o vértice $y$; 
+\item para cada aresta $xz \in E_G$ com $x \not\in Y$ e $z \in Y$, acrescentar uma aresta $xy$, se tal aresta ainda não foi acrescentada.
+\end{enumerate}
+% remoção de $Y$ (e de todas as arestas incidentes a $Y$), pelo acrescimo de um novo vértice~$y$ e, para todo $u \in V_G \setminus Y$, pelo acrescimo da aresta $uy$ se existir pelo menos uma aresta $ux \in E_G$ para algum $x \in Y$. Ou seja, $G/Y$ é o grafo
+Ou seja, $G/Y = (V,E)$ onde
+\begin{align*}
+  V &= (V_G \setminus Y) \cup \{y\}\\
+  E &= \{ uv \in E_G \colon u,v \not\in Y\} \cup \{xy \colon x \in V_G \setminus Y \text{ e } \exists\,z\in Y \text{ tal que }xz \in E_G\}.
+\end{align*}
 
 
-% \begin{exem}
-% No exemplo da Figura~\ref{fig:contr} abaixo, todo vértice vizinho de alguém em $Y$, depois da contração, será vizinho de $y$.
-% \begin{figure}[H]
-% \centering
-% \begin{subfigure}{.5\textwidth}
-%   \centering
-%   \includegraphics[]{contracao.pdf}
-%   \caption{o grafo~$G$ e o conjunto $Y$.}
-%   \label{fig:contr1}
-% \end{subfigure}%
-% \begin{subfigure}{.5\textwidth}
-%   \centering
-%   \includegraphics[]{contraido.pdf}
-%   \caption{o grafo~$G/Y$.}
-%   \label{fig:contr2}
-% \end{subfigure}
-% \caption{a contração de um conjunto $Y$ no grafo~$G$.}
-% \label{fig:contr}
-% \end{figure}
-% \end{exem}
+\begin{exem}
+No exemplo da Figura~\ref{fig:contr} abaixo, todo vértice vizinho de alguém em $Y$, depois da contração, será vizinho de $y$.
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[]{contracao.pdf}
+  \caption{o grafo~$G$ e o conjunto $Y$.}
+  \label{fig:contr1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[]{contraido.pdf}
+  \caption{o grafo~$G/Y$.}
+  \label{fig:contr2}
+\end{subfigure}
+\caption{a contração de um conjunto $Y$ no grafo~$G$.}
+\label{fig:contr}
+\end{figure}
+\end{exem}
 
-% \noindent Observe que a escolha do vértice $y$, no passo~\ref{contr:step1} da definição de $G/Y$, é irrelevante. 
+\noindent Observe que a escolha do vértice $y$, no passo~\ref{contr:step1} da definição de $G/Y$, é irrelevante. 
 
-% %Na prova do Teorema de Menger, o conjunto $Y$ que iremos contrair é um par de vértices adjacentes, i.e. uma aresta $e \in E_G$. Nesse caso, escrevemos $G/e$ para denotar o grafo contraído.
+%Na prova do Teorema de Menger, o conjunto $Y$ que iremos contrair é um par de vértices adjacentes, i.e. uma aresta $e \in E_G$. Nesse caso, escrevemos $G/e$ para denotar o grafo contraído.
 
 \subsubsection {Teorema de Menger}
 
 
-% \begin{lema}
-% \label{lema:c_contracted}
-% Seja $G$ um grafo, seja $Y \subseteq V_G$ um subconjunto de vértices e, para um vértice $y \in Y$, seja $G/Y$ o grafo obtido contraindo-se o conjunto $Y$ ao vértice $y$. Se $x \in V_G \setminus Y$, então $c_{G/Y}(x,y) \geq c_G(x,y)$.
-% \end{lema}
+\begin{lema}
+\label{lema:c_contracted}
+Seja $G$ um grafo, seja $Y \subseteq V_G$ um subconjunto de vértices e, para um vértice $y \in Y$, seja $G/Y$ o grafo obtido contraindo-se o conjunto $Y$ ao vértice $y$. Se $x \in V_G \setminus Y$, então $c_{G/Y}(x,y) \geq c_G(x,y)$.
+\end{lema}
 
-% \begin{proof}
-%   Seja $S$ um conjunto $(x,y)$-separador em $G/Y$. Suponha, com a finalidade de chegarmos a uma contradição, que $S$ não seja um conjunto $(x,y)$-separador em $G$. Nesse caso, $G - S$ possui um $(x,y)$-caminho $v_0 v_1 \cdots v_k$ (e, portanto, $v_0 = x$ e $v_k = y$). Seja $i > 0$ o menor índice tal que $v_i \in Y$. Observe que tal índice existe e satisfaz $i \leq k$, pois $v_k = y$ e $y \in Y$. Assim, o caminho $v_0 v_1 \cdots v_{i-1} y$ é um $(x,y)$-caminho em $G/Y$ que evita $S$: uma contradição com a propriedade de que $S$ é $(x,y)$-separador em $G/Y$. 
+\begin{proof}
+  Seja $S$ um conjunto $(x,y)$-separador em $G/Y$. Suponha, com a finalidade de chegarmos a uma contradição, que $S$ não seja um conjunto $(x,y)$-separador em $G$. Nesse caso, $G - S$ possui um $(x,y)$-caminho $v_0 v_1 \cdots v_k$ (e, portanto, $v_0 = x$ e $v_k = y$). Seja $i > 0$ o menor índice tal que $v_i \in Y$. Observe que tal índice existe e satisfaz $i \leq k$, pois $v_k = y$ e $y \in Y$. Assim, o caminho $v_0 v_1 \cdots v_{i-1} y$ é um $(x,y)$-caminho em $G/Y$ que evita $S$: uma contradição com a propriedade de que $S$ é $(x,y)$-separador em $G/Y$. 
 
-% Podemos supor, então, que todo conjunto $(x,y)$-separador em $G/Y$ é também $(x,y)$-separador em $G$. Portanto, é verdadeira a desigualdade almejada no enunciado.
-% \end{proof}
+Podemos supor, então, que todo conjunto $(x,y)$-separador em $G/Y$ é também $(x,y)$-separador em $G$. Portanto, é verdadeira a desigualdade almejada no enunciado.
+\end{proof}
 
-% \begin{lema}
-% \label{lema:all_paths_size_2}
-% Seja $G$ um grafo e sejam $x,y \in V_G$ dois vértices distintos. Seja $\mathcal{P}$ uma coleção máxima de $(x,y)$-caminhos internamente disjuntos em~$G$ e seja $S$ o conjunto de vértices que estão em algum $(x,y)$-caminho de~$\mathcal{P}$. Se todo vértice $s \in S$ é adjacente a ambos~$x$ e~$y$, então $p(x,y) = c(x,y)$.
-% \end{lema}
+\begin{lema}
+\label{lema:all_paths_size_2}
+Seja $G$ um grafo e sejam $x,y \in V_G$ dois vértices distintos. Seja $\mathcal{P}$ uma coleção máxima de $(x,y)$-caminhos internamente disjuntos em~$G$ e seja $S$ o conjunto de vértices que estão em algum $(x,y)$-caminho de~$\mathcal{P}$. Se todo vértice $s \in S$ é adjacente a ambos~$x$ e~$y$, então $p(x,y) = c(x,y)$.
+\end{lema}
 
-% \begin{proof}
-% Note que $S$ é um conjunto $(x,y)$-separador em~$G$. Seja $\mathcal{Q}$ a coleção de $(x,y)$-caminhos internamente disjuntos definida por
-% \[ \mathcal{Q} = \{xsy \colon s \in S\}. \]
-% Note que $|S| = |\mathcal{Q}|$. Pelo Exercício~\ref{exer:min_max}, temos que $c(x,y) = p(x,y)$.
-% \end{proof}
+\begin{proof}
+Note que $S$ é um conjunto $(x,y)$-separador em~$G$. Seja $\mathcal{Q}$ a coleção de $(x,y)$-caminhos internamente disjuntos definida por
+\[ \mathcal{Q} = \{xsy \colon s \in S\}. \]
+Note que $|S| = |\mathcal{Q}|$. Pelo Exercício~\ref{exer:min_max}, temos que $c(x,y) = p(x,y)$.
+\end{proof}
 
 
 \begin{teor}
@@ -616,47 +616,85 @@ Se~$G$ é um grafo de ordem $n \geq 2$ e $x,y$ são vértices distintos em~$G$, 
 \end{teor}
 
 \begin{proof}
-  A prova é por indução em~$m$. Para estabelecermos a base da indução, devemos provar que o teorema vale para todo o grafo vazio com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices $x \neq y$, não há caminho de $x$ a~$y$ e, portanto, $p(x,y) = c(x,y) = 0$.
+  A prova é por indução em~$m$. O caso base, na verdade, são infinitos casos: devemos provar que o teorema é válido para todos os grafos vazios ($m = 0$) com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices distintos $x,y$, não há caminho de $x$ a~$y$. Portanto, $p(x,y) = c(x,y) = 0$.
 
-Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m > 0$ arestas, e sejam $x,y$ dois vértices distintos de~$G$. Suponha que qualquer grafo com menos que $m$ arestas satisfaz~\eqref{eq:min_max_conn2}. Se $xy \in E_G$, então aplicamos a hipótese de indução em $G - xy$ e facilmente obtemos que $G$ deve satisfazer~\eqref{eq:min_max_conn2}. Suponha, então, que $xy \not\in E_G$. Também podemos supor que $x$ e $y$ estão ligados por um caminho, do contrário $p(x,y) = c(x,y) = 0$. Além disso, podemos supor que todo vértice de $G$ está em algum $(x,y)$-caminho, pois vértices em outras componentes não influenciam nos parêmetros $p$ e $c$. 
+Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m$ arestas, $m > 0$, e sejam $x,y$ dois vértices distintos de~$G$. Vamos supor, como hipótese de indução, que qualquer grafo com $m - 1$ arestas satisfaz~\eqref{eq:min_max_conn2}.
 
-Seja $\mathcal{P}$ uma coleção máxima de $(x,y)$-caminhos internamente disjuntos em~$G$, ou seja, $|\mathcal{P}| = p(x,y)$. 
+Vamos primeiro considerar o caso em que toda aresta de~$G$ incide em~$x$ ou em~$y$. Neste caso, tome $S$ como sendo o conjunto de vértices que são adjacentes, simultaneamente, a~$x$ e a~$y$ em~$G$:
+\[ S = N(x) \cap N(y). \]
+ Tal conjunto é $(x,y)$-separador e possui a mesma cardinalidade que o conjunto de $(x,y)$-caminhos internamente disjuntos definido por
+\[ \mathcal{P} = \{xsy \colon s \in S\}. \]
+Da existência de $S$ e $\mathcal{P}$ acima, ambos com o mesmo número de elementos, segue a igualdade em~\eqref{eq:min_max_conn2}.
 
-Primeiramente supomos que existe um vértice $v \neq x,y$ que não pertence a nenhum caminho em $\mathcal{P}$. Seja $N = N_G(v)$ o conjunto de vizinhos de $v$, e considere o grafo $H$ construído da seguinte maneira:
-\begin{enumerate}[(i)]
-\item escolha um vizinho $u \in N$, arbitrariamente;
-\item remova todas as arestas de $vw$ com $w \in N$;
-\item \label{step:new_edges} para cada $w \in N - u$, acrescente a aresta $uw$, se necessário.
-  \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.6]{grafo_H.pdf}
-    \caption{construção do grafo $H$ a partir de $G$.}
-    \label{fig:H_contruction}
-  \end{figure}
-
-\end{enumerate}
-Para facilitar a escrita, vamos usar $c,c',p,p'$ para denotar as quantidades
+Portanto podemos supor que existe uma aresta~$e \in E_G$ que não incide em~$x$ e nem em~$y$. Considere~$G' = G - e$.  Para facilitar a escrita, vamos usar $c,c',p,p'$ para denotar as quantidades
 \begin{align*}
   c &= c_G(x,y),\\
-  c' &= c_H(x,y),\\
+  c' &= c_{G-e}(x,y),\\
   p &= p_G(x,y),\\
-  p' &= p_H(x,y).
+  p' &= p_{G-e}(x,y).
 \end{align*}
-Note que $\mathcal{P}$ é uma coleção de $(x,y)$-caminhos internamente disjuntos em $H$, portanto $p \leq p'$. Vamos argumentar que $p \geq p'$. Suponha o contrário, e considere uma coleção $\mathcal{Q}$ de $(x,y)$-caminhos internamente disjuntos em $H$ com $|\mathcal{Q}| > p$. Note que $\mathcal{Q}$ não pode ser uma coleção de $(x,y)$-caminhos internamente disjuntos em $G$. Portanto, o vértice $u$ deve estar em algum $(x,y)$-caminhos $Q \in \mathcal{Q}$ e, além disso, uma ou duas arestas acrescentadas no passo~\eqref{step:new_edges} devem ser percorridas por $Q$. Em ambos os casos, seria possível usar o vértice~$v$ no grafo $G$ para construir uma coleção de caminhos $\mathcal{Q}'$ com mais do que $p(x,y)$ caminhos: uma contradição.
-\begin{figure}[H]
-  \centering
-  \includegraphics[scale=0.6]{caminhos_Q.pdf}
-  \caption{usando $\mathcal{Q}$ e $v$ para construir uma coleção de caminhos em~$G$.}
-  \label{fig:bigger_collection}
-\end{figure}
-Portanto $p = p'$. 
+Pela hipótese de indução, sabemos que~$G'$ satisfaz~\eqref{eq:min_max_conn2}, ou seja, $p' = c'$. Observe que, pelo fato de $G'$ ser subgrafo de~$G$, devemos ter $p'\leq p$ e $c'\leq c$. Por outro lado, vamos argumentar que $c'$ não pode ser muito menor que $c$. De fato, se $S$ é um conjunto $(x,y)$-separador em $G-e$, então $S$ mais uma das extremidades da aresta $e$ é $(x,y)$-separador em $G$, portanto, $c' \geq c - 1$. %Com relação à $(u,v)$-conexidade, note que, em qualquer coleção de $(u,v)$-internamente disjuntos em $G$, a aresta $e$ pertence a, no máximo, um desses caminhos, o que nos leva a concluir que $p' \geq p - 1$.
 
-Observe também que todo conjunto $(x,y)$-separador em $H$ é também $(x,y)$-separador em $G$. Portanto $c \leq c'$. Aplicando a hipótese de indução no grafo $H$, temos que $c' = p'$. Juntando a esses fatos a desigualdade~\eqref{eq:min_max_conn} da Proposição~\ref{prop:easy_ineq_menger}, temos que 
-\[ c \leq c' = p' = p \leq c, \]
-Portanto $c = p$ como gostaríamos.
-Sendo assim, podemos supor que toda coleção máxima de $(x,y)$-caminhos internamente disjuntos em~$G$ usa todos os vértices de $G$, o que significa que $N(x)$ é um conjunto $(x,y)$-separador com $p(x,y)$ vértices, o que implica, pelo Exercício~\ref{exer:min_max}, que $c(x,y) = p(x,y)$.
+Juntando as informações do parágrafo anterior, temos
+\begin{equation}
+  \label{eq:p_c_relation}
+   p \geq p' = c' \geq c - 1.
+\end{equation}
+No caso de $p > c - 1$, pela Proposição~\ref{prop:easy_ineq_menger}, devemos ter $p = c$, e não resta nada a ser demonstrado. Suponhamos, então, que $p = c - 1$. Nesse caso, as desigualdades em~\eqref{eq:p_c_relation} devem ser todas justas:
+\[ p = p' = c' = c - 1.\]
 
-Pelo princípio de indução finita, segue a validade do teorema.
+Seja $S$ um conjnto $(x,y)$-separador mínimo em $G'$. Note que 
+\begin{equation}
+  \label{eq:S_small}
+  |S| = c - 1.
+\end{equation}
+ Defina $X$ como o conjunto de vértices atingíveis a partir de~$x$ em $G' - S$ e seja $Y$ o conjunto de vértices atingíveis a partir de~$y$ em $G' - S$.
+
+Por~\eqref{eq:S_small}, sabemos que $S$ não é um conjunto $(u,v)$-separador de $G$; portanto, $G - S$ possui um $(x,y)$-caminho, e este deve percorrer a aresta $e$. Podemos concluir que uma das extremidades de $e$ está em $X$ e a outra está em $Y$.
+
+Terminar na lousa!
+
+%   A prova é por indução em~$m$. Para estabelecermos a base da indução, devemos provar que o teorema vale para todo o grafo vazio com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices $x \neq y$, não há caminho de $x$ a~$y$ e, portanto, $p(x,y) = c(x,y) = 0$.
+
+% Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m > 0$ arestas, e sejam $x,y$ dois vértices distintos de~$G$. Suponha que qualquer grafo com menos que $m$ arestas satisfaz~\eqref{eq:min_max_conn2}. Se $xy \in E_G$, então aplicamos a hipótese de indução em $G - xy$ e facilmente obtemos que $G$ deve satisfazer~\eqref{eq:min_max_conn2}. Suponha, então, que $xy \not\in E_G$. Também podemos supor que $x$ e $y$ estão ligados por um caminho, do contrário $p(x,y) = c(x,y) = 0$. Além disso, podemos supor que todo vértice de $G$ está em algum $(x,y)$-caminho, pois vértices em outras componentes não influenciam nos parêmetros $p$ e $c$. 
+
+% Seja $\mathcal{P}$ uma coleção máxima de $(x,y)$-caminhos internamente disjuntos em~$G$, ou seja, $|\mathcal{P}| = p(x,y)$. 
+
+% Primeiramente supomos que existe um vértice $v \neq x,y$ que não pertence a nenhum caminho em $\mathcal{P}$. Seja $N = N_G(v)$ o conjunto de vizinhos de $v$, e considere o grafo $H$ construído da seguinte maneira:
+% \begin{enumerate}[(i)]
+% \item escolha um vizinho $u \in N$, arbitrariamente;
+% \item remova todas as arestas de $vw$ com $w \in N$;
+% \item \label{step:new_edges} para cada $w \in N - u$, acrescente a aresta $uw$, se necessário.
+%   \begin{figure}[H]
+%     \centering
+%     \includegraphics[scale=0.6]{grafo_H.pdf}
+%     \caption{construção do grafo $H$ a partir de $G$.}
+%     \label{fig:H_contruction}
+%   \end{figure}
+
+% \end{enumerate}
+% Para facilitar a escrita, vamos usar $c,c',p,p'$ para denotar as quantidades
+% \begin{align*}
+%   c &= c_G(x,y),\\
+%   c' &= c_H(x,y),\\
+%   p &= p_G(x,y),\\
+%   p' &= p_H(x,y).
+% \end{align*}
+% Note que $\mathcal{P}$ é uma coleção de $(x,y)$-caminhos internamente disjuntos em $H$, portanto $p \leq p'$. Vamos argumentar que $p \geq p'$. Suponha o contrário, e considere uma coleção $\mathcal{Q}$ de $(x,y)$-caminhos internamente disjuntos em $H$ com $|\mathcal{Q}| > p$. Note que $\mathcal{Q}$ não pode ser uma coleção de $(x,y)$-caminhos internamente disjuntos em $G$. Portanto, o vértice $u$ deve estar em algum $(x,y)$-caminhos $Q \in \mathcal{Q}$ e, além disso, uma ou duas arestas acrescentadas no passo~\eqref{step:new_edges} devem ser percorridas por $Q$. Em ambos os casos, seria possível usar o vértice~$v$ no grafo $G$ para construir uma coleção de caminhos $\mathcal{Q}'$ com mais do que $p(x,y)$ caminhos: uma contradição.
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[scale=0.6]{caminhos_Q.pdf}
+%   \caption{usando $\mathcal{Q}$ e $v$ para construir uma coleção de caminhos em~$G$.}
+%   \label{fig:bigger_collection}
+% \end{figure}
+% Portanto $p = p'$. 
+
+% Observe também que todo conjunto $(x,y)$-separador em $H$ é também $(x,y)$-separador em $G$. Portanto $c \leq c'$. Aplicando a hipótese de indução no grafo $H$, temos que $c' = p'$. Juntando a esses fatos a desigualdade~\eqref{eq:min_max_conn} da Proposição~\ref{prop:easy_ineq_menger}, temos que 
+% \[ c \leq c' = p' = p \leq c, \]
+% Portanto $c = p$ como gostaríamos.
+% Sendo assim, podemos supor que toda coleção máxima de $(x,y)$-caminhos internamente disjuntos em~$G$ usa todos os vértices de $G$, o que significa que $N(x)$ é um conjunto $(x,y)$-separador com $p(x,y)$ vértices, o que implica, pelo Exercício~\ref{exer:min_max}, que $c(x,y) = p(x,y)$.
+
+% Pelo princípio de indução finita, segue a validade do teorema.
 \end{proof}
 
 
