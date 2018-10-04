@@ -506,7 +506,7 @@ Dado um grafo~$G$ e dois vértices distintos~$x,y \in V_G$, definimos a $(x,y)$-
 No grafo completo $K_n$, quaisquer dois vértices $u,v$ estão ligados por um caminho de comprimento~1 (através da aresta $uv$) e por $n-2$ caminhos internamente disjuntos de comprimento~$2$. Portanto, para qualque par de vértices $u,v$ no $K_n$, vale $p(u,v) = n - 1$.
 \end{exem}
 
-Se $S \subseteq V_G$ é um subconjunto de vértices, $x,y \not\in S$ e não existe $(x,y)$-caminho em $G[V \setminus S]$, então chamamos $S$ de conjunto $(x,y)$-\emph{separador} em~$G$. Note que, se $xy \in E_G$, então $G$ não possui conjunto $(x,y)$-separador. Para $xy \not\in E_G$, podemos denotar o tamanho mínimo de um conjunto $(x,y)$-separador por $c(x,y)$. Se $xy \in E_G$, então não existe conjunto $(x,y)$-separador. No entanto, se $xy \in E_G$, definimos $c(x,y)$ como 
+Se $S \subseteq V_G$ é um subconjunto de vértices, $x,y \not\in S$ e não existe $(x,y)$-caminho em $G[V \setminus S]$, então chamamos $S$ de conjunto $(x,y)$-\emph{separador} em~$G$. Para $xy \not\in E_G$, podemos denotar o tamanho mínimo de um conjunto $(x,y)$-separador por $c(x,y)$. Note que, se $xy \in E_G$, então $G$ não possui conjunto $(x,y)$-separador, no entanto, podemos definir $c(x,y)$ também para este caso como 
 \begin{equation}
   \label{eq:c_adjacent}
    c(x,y) = 1 + c_{G - xy}(x,y). 
@@ -596,13 +596,15 @@ Podemos supor, então, que todo conjunto $(x,y)$-separador em $G/Y$ é também $
 
 \begin{lema}
 \label{lema:all_paths_size_2}
-Seja $G$ um grafo e sejam $x,y \in V_G$ dois vértices distintos. Seja $\mathcal{P}$ uma coleção máxima de $(x,y)$-caminhos internamente disjuntos em~$G$ e seja $S$ o conjunto de vértices que estão em algum $(x,y)$-caminho de~$\mathcal{P}$. Se todo vértice $s \in S$ é adjacente a ambos~$x$ e~$y$, então $p(x,y) = c(x,y)$.
+Seja $G$ um grafo e sejam $x,y \in V_G$ dois vértices distintos. Se toda aresta de~$G$ é incidente em~$x$ ou em~$y$, então $p(x,y) = c(x,y)$.
 \end{lema}
 
 \begin{proof}
-Note que $S$ é um conjunto $(x,y)$-separador em~$G$. Seja $\mathcal{Q}$ a coleção de $(x,y)$-caminhos internamente disjuntos definida por
-\[ \mathcal{Q} = \{xsy \colon s \in S\}. \]
-Note que $|S| = |\mathcal{Q}|$. Pelo Exercício~\ref{exer:min_max}, temos que $c(x,y) = p(x,y)$.
+Seja $S$ o conjunto de vizinhos comuns a~$x$ e a~$y$, ou seja
+\[ S = N(x) \cap N(y). \]
+Como toda aresta incide em~$x$ ou em~$y$, temos que $S$ é um conjunto $(x,y)$-separador em~$G$. Seja $\mathcal{P}$ a coleção de $(x,y)$-caminhos internamente disjuntos definida por
+\[ \mathcal{P} = \{xsy \colon s \in S\}. \]
+Note que $|S| = |\mathcal{P}|$. Pelo Exercício~\ref{exer:min_max}, temos que $c(x,y) = p(x,y)$.
 \end{proof}
 
 
@@ -616,43 +618,61 @@ Se~$G$ é um grafo de ordem $n \geq 2$ e $x,y$ são vértices distintos em~$G$, 
 \end{teor}
 
 \begin{proof}
-  A prova é por indução em~$m$. O caso base, na verdade, são infinitos casos: devemos provar que o teorema é válido para todos os grafos vazios ($m = 0$) com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices distintos $x,y$, não há caminho de $x$ a~$y$. Portanto, $p(x,y) = c(x,y) = 0$.
+  A prova é por indução em~$m$. Quando $m = 0$, temos o caso base. Ou seja, devemos provar que o teorema é válido para todos os grafos vazios com $n \geq 2$ vértices. De fato, em qualquer grafo vazio, se tomarmos dois vértices $x \neq y$, não há caminho de $x$ a~$y$. Portanto, $p(x,y) = c(x,y) = 0$.
 
-Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m$ arestas, $m > 0$, e sejam $x,y$ dois vértices distintos de~$G$. Vamos supor, como hipótese de indução, que qualquer grafo com $m - 1$ arestas satisfaz~\eqref{eq:min_max_conn2}.
+Para provarmos o passo de indução, seja $G$ um grafo qualquer com $m > 0$ arestas, e sejam $x,y$ vértices distintos de~$G$. Vamos supor, como hipótese de indução, que qualquer grafo com menos que $m$ arestas satisfaz~\eqref{eq:min_max_conn2}.
 
-Vamos primeiro considerar o caso em que toda aresta de~$G$ incide em~$x$ ou em~$y$. Neste caso, tome $S$ como sendo o conjunto de vértices que são adjacentes, simultaneamente, a~$x$ e a~$y$ em~$G$:
-\[ S = N(x) \cap N(y). \]
- Tal conjunto é $(x,y)$-separador e possui a mesma cardinalidade que o conjunto de $(x,y)$-caminhos internamente disjuntos definido por
-\[ \mathcal{P} = \{xsy \colon s \in S\}. \]
-Da existência de $S$ e $\mathcal{P}$ acima, ambos com o mesmo número de elementos, segue a igualdade em~\eqref{eq:min_max_conn2}.
-
-Portanto podemos supor que existe uma aresta~$e \in E_G$ que não incide em~$x$ e nem em~$y$. Considere~$G' = G - e$.  Para facilitar a escrita, vamos usar $c,c',p,p'$ para denotar as quantidades
-\begin{align*}
-  c &= c_G(x,y),\\
-  c' &= c_{G-e}(x,y),\\
-  p &= p_G(x,y),\\
-  p' &= p_{G-e}(x,y).
-\end{align*}
-Pela hipótese de indução, sabemos que~$G'$ satisfaz~\eqref{eq:min_max_conn2}, ou seja, $p' = c'$. Observe que, pelo fato de $G'$ ser subgrafo de~$G$, devemos ter $p'\leq p$ e $c'\leq c$. Por outro lado, vamos argumentar que $c'$ não pode ser muito menor que $c$. De fato, se $S$ é um conjunto $(x,y)$-separador em $G-e$, então $S$ mais uma das extremidades da aresta $e$ é $(x,y)$-separador em $G$, portanto, $c' \geq c - 1$. %Com relação à $(u,v)$-conexidade, note que, em qualquer coleção de $(u,v)$-internamente disjuntos em $G$, a aresta $e$ pertence a, no máximo, um desses caminhos, o que nos leva a concluir que $p' \geq p - 1$.
-
-Juntando as informações do parágrafo anterior, temos
+Pelo Lema~\ref{lema:all_paths_size_2}, podemos supor que existe uma aresta~$uv \in E_G$ que não incide em~$x$ e nem em~$y$. Considere~$H = G - uv$.  Para facilitar a escrita, vamos usar $c_G,c_H,p_G,p_H$ para denotar as quantidades $c_G(x,y),  c_H(x,y), p_G(x,y)$ e~$p_H(x,y)$ respectivamente.
+% \begin{align*}
+%   c_G &= c_G(x,y),\\
+%   c_H &= c_{G-e}(x,y),\\
+%   p_G &= p_G(x,y),\\
+%   p_H &= p_{G-e}(x,y).
+% \end{align*}
+Pela hipótese de indução, sabemos que~$H$ satisfaz~\eqref{eq:min_max_conn2}, ou seja, temos
+\begin{equation}
+  \label{eq:induction1}
+  p_H = c_H.
+\end{equation}
+Observe que, pelo fato de $H$ ser subgrafo de~$G$, devemos ter 
+\begin{align}
+\label{eq:subgraph1} p_H &\leq p_G,\\
+\label{eq:subgraph2} c_H &\leq c_G.  
+\end{align}
+Por outro lado, vamos argumentar que $c_H$ não pode ser muito menor que $c_G$. De fato, se $S$ é um conjunto $(x,y)$-separador em $H$, então $S \cup \{u\}$ e $S \cup \{v\}$ são $(x,y)$-separadores em $G$, portanto, temos
+\begin{equation}
+  \label{eq:lower_bound_cH}
+  c_H \geq c_G - 1.
+\end{equation}
+Combinando as informações em~\eqref{eq:induction1}, \eqref{eq:subgraph1}, \eqref{eq:subgraph2} e \eqref{eq:lower_bound_cH}, temos
 \begin{equation}
   \label{eq:p_c_relation}
-   p \geq p' = c' \geq c - 1.
+   p_G \geq p_H = c_H \geq c_G - 1.
 \end{equation}
-No caso de $p > c - 1$, pela Proposição~\ref{prop:easy_ineq_menger}, devemos ter $p = c$, e não resta nada a ser demonstrado. Suponhamos, então, que $p = c - 1$. Nesse caso, as desigualdades em~\eqref{eq:p_c_relation} devem ser todas justas:
-\[ p = p' = c' = c - 1.\]
+No caso de $p_G > c_G - 1$, pela Proposição~\ref{prop:easy_ineq_menger}, devemos ter $p_G = c_G$, que é justamente o que queríamos demonstrar. Suponhamos, então, que $p_G = c_G - 1$. Nesse caso, as desigualdades em~\eqref{eq:p_c_relation} devem ser todas justas:
+\begin{equation}
+  \label{eq:pG_equal_cG_minus_1}
+  p_G = p_H = c_H = c_G - 1.
+\end{equation}
 
-Seja $S$ um conjnto $(x,y)$-separador mínimo em $G'$. Note que 
+Seja $S$ um conjnto $(x,y)$-separador mínimo em $H$. Note, por~\eqref{eq:pG_equal_cG_minus_1} que 
 \begin{equation}
   \label{eq:S_small}
-  |S| = c - 1.
+  |S| = c_G - 1.
 \end{equation}
- Defina $X$ como o conjunto de vértices atingíveis a partir de~$x$ em $G' - S$ e seja $Y$ o conjunto de vértices atingíveis a partir de~$y$ em $G' - S$.
+ Defina $X$ como o conjunto de vértices atingíveis a partir de~$x$ em $H - S$ e seja $Y$ o conjunto de vértices atingíveis a partir de~$y$ em $H - S$.
 
-Por~\eqref{eq:S_small}, sabemos que $S$ não é um conjunto $(u,v)$-separador de $G$; portanto, $G - S$ possui um $(x,y)$-caminho, e este deve percorrer a aresta $e$. Podemos concluir que uma das extremidades de $e$ está em $X$ e a outra está em $Y$.
+Por~\eqref{eq:S_small}, sabemos que $S$ não é um conjunto $(u,v)$-separador de $G$; portanto, $G - S$ possui um $(x,y)$-caminho, e este deve, necessariamente, percorrer a aresta $uv$. Podemos concluir que uma das extremidades de $uv$ está em $X$ e a outra está em $Y$. Sem perda de generalidade, suponha que $u \in X$ e $v \in Y$. Denote por $s_1, \dots, s_{c_G - 1}$ os vértices de $S$.
 
-Terminar na lousa!
+Considere $G/Y$, e observe que ele tem menos arestas que $G$. Pelo Lema~\ref{lema:c_contracted}, sabemos que todo conjunto $(x,y)$-separador de $G/Y$ é $(x,y)$-separador de $G$. Assim, $c_{G/Y}(x,y) \geq c_G(x,y)$. Por outro lado, $S \cup \{u\}$ é separador em $G/Y$, o que implica em $c_{G/Y}(x,y) = c_G(x,y)$. Aplicando a hipótese de indução ao grafo $G/Y$, sabemos que $p_{G/Y} = c_{G/Y}$, e que, portanto, existe uma coleção de $(x,y)$-caminhos internamente disjuntos $P_1, P_2, \dots, P_{C_G}$. Denote por $P_i'$ o caminho resultante de $P_i$ após a remoção da extremidade $y$. Note que $P_i'$ é um caminho tanto em $G/Y$ como em $G$. Sem perda de generalidade, suponha que cada caminho $P_i'$ seja um $(x,s_i)$-caminho, para $i \in \{1,\dots,c_G - 1\}$, e suponha que $P_{c_G}$ seja um $(x,u)$-caminho. 
+
+Seguindo as idéias do parágrafo anterior, mas agora considerando o grafo $G/X$ resultante da contração do conjunto $X$ ao vértice $x$, % obtemos uma coleção de $(x,y)$-caminhos internamente disjuntos $Q_1, Q_2, \dots, Q_{C_G}$. Denote por $Q_i'$ o caminho resultante de $Q_i$ após a remoção da extremidade $x$. Note que $P_i'$ é um caminho tanto em $G/Y$ como em $G$. Sem perda de generalidade, suponha que cada caminho $Q_i'$ seja um $(s_i,y)$-caminho, para $i \in \{1,\dots,c_G - 1\}$, e suponha que $Q_{c_G}$ seja um $(v,y)$-caminho.
+obtemos uma coleção de $(x,y)$-caminhos internamente disjuntos $Q_1', Q_2', \dots, Q_{C_G}'$, onde cada $Q_i'$ é um $(s_i,y)$-caminho, para $i \in \{1,\dots,c_G - 1\}$, e $Q_{c_G}$ é um $(v,y)$-caminho.
+
+Podemos combinar as coleções $\{P_1', \dots, P_{c_G}'\}$ e $\{Q_1', \dots, Q_{c_G}'\}$ numa coleção de $(x,y)$-caminhos internamente disjuntos em $G$:
+\[\{P_1'Q_1', \dots, P_{c_G}'Q_{c_G}'\}.\]
+Isso é uma contradição com \eqref{eq:pG_equal_cG_minus_1}.
+\end{proof}
 
 %   A prova é por indução em~$m$. Para estabelecermos a base da indução, devemos provar que o teorema vale para todo o grafo vazio com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices $x \neq y$, não há caminho de $x$ a~$y$ e, portanto, $p(x,y) = c(x,y) = 0$.
 
@@ -695,7 +715,7 @@ Terminar na lousa!
 % Sendo assim, podemos supor que toda coleção máxima de $(x,y)$-caminhos internamente disjuntos em~$G$ usa todos os vértices de $G$, o que significa que $N(x)$ é um conjunto $(x,y)$-separador com $p(x,y)$ vértices, o que implica, pelo Exercício~\ref{exer:min_max}, que $c(x,y) = p(x,y)$.
 
 % Pelo princípio de indução finita, segue a validade do teorema.
-\end{proof}
+%\end{proof}
 
 
 Enunciar a versão do teorema de menger para caminhos aresta disjuntos
