@@ -664,14 +664,36 @@ Seja $S$ um conjnto $(x,y)$-separador mínimo em $H$. Note, por~\eqref{eq:pG_equ
 
 Por~\eqref{eq:S_small}, sabemos que $S$ não é um conjunto $(u,v)$-separador de $G$; portanto, $G - S$ possui um $(x,y)$-caminho, e este deve, necessariamente, percorrer a aresta $uv$. Podemos concluir que uma das extremidades de $uv$ está em $X$ e a outra está em $Y$. Sem perda de generalidade, suponha que $u \in X$ e $v \in Y$. Denote por $s_1, \dots, s_{c_G - 1}$ os vértices de $S$.
 
-Considere $G/Y$, e observe que ele tem menos arestas que $G$. Pelo Lema~\ref{lema:c_contracted}, sabemos que todo conjunto $(x,y)$-separador de $G/Y$ é $(x,y)$-separador de $G$. Assim, $c_{G/Y}(x,y) \geq c_G(x,y)$. Por outro lado, $S \cup \{u\}$ é separador em $G/Y$, o que implica em $c_{G/Y}(x,y) = c_G(x,y)$. Aplicando a hipótese de indução ao grafo $G/Y$, sabemos que $p_{G/Y} = c_{G/Y}$, e que, portanto, existe uma coleção de $(x,y)$-caminhos internamente disjuntos $P_1, P_2, \dots, P_{C_G}$. Denote por $P_i'$ o caminho resultante de $P_i$ após a remoção da extremidade $y$. Note que $P_i'$ é um caminho tanto em $G/Y$ como em $G$. Sem perda de generalidade, suponha que cada caminho $P_i'$ seja um $(x,s_i)$-caminho, para $i \in \{1,\dots,c_G - 1\}$, e suponha que $P_{c_G}$ seja um $(x,u)$-caminho. 
+Considere $G/Y$, e observe que ele tem menos arestas que $G$. Pelo Lema~\ref{lema:c_contracted}, sabemos que todo conjunto $(x,y)$-separador de $G/Y$ é $(x,y)$-separador de $G$. Assim, $c_{G/Y}(x,y) \geq c_G(x,y)$. Por outro lado, $S \cup \{u\}$ é separador em $G/Y$, o que implica em $c_{G/Y}(x,y) = c_G(x,y)$. Aplicando a hipótese de indução ao grafo $G/Y$, sabemos que $p_{G/Y} = c_{G/Y}$, e que, portanto, existe uma coleção de $(x,y)$-caminhos internamente disjuntos $P_1, P_2, \dots, P_{C_G}$.
+
+Denote por $P_i'$ o caminho resultante de $P_i$ após a remoção da extremidade $y$. Note que $P_i'$ é um caminho tanto em $G/Y$ como em $G$. Sem perda de generalidade, suponha que cada caminho $P_i'$ seja um $(x,s_i)$-caminho, para $i \in \{1,\dots,c_G - 1\}$, e suponha que $P_{c_G}$ seja um $(x,u)$-caminho. Veja a Figura~\ref{fig:contract_y} abaixo.
+\begin{figure}[H]
+  \centering
+  \includegraphics{g_contract_y.pdf}
+  \caption{caminhos internamente disjuntos $P_1', P_2', \dots, P_{C_G}'$ em~$G/Y$.}
+  \label{fig:contract_y}
+\end{figure}
 
 Seguindo as idéias do parágrafo anterior, mas agora considerando o grafo $G/X$ resultante da contração do conjunto $X$ ao vértice $x$, % obtemos uma coleção de $(x,y)$-caminhos internamente disjuntos $Q_1, Q_2, \dots, Q_{C_G}$. Denote por $Q_i'$ o caminho resultante de $Q_i$ após a remoção da extremidade $x$. Note que $P_i'$ é um caminho tanto em $G/Y$ como em $G$. Sem perda de generalidade, suponha que cada caminho $Q_i'$ seja um $(s_i,y)$-caminho, para $i \in \{1,\dots,c_G - 1\}$, e suponha que $Q_{c_G}$ seja um $(v,y)$-caminho.
-obtemos uma coleção de $(x,y)$-caminhos internamente disjuntos $Q_1', Q_2', \dots, Q_{C_G}'$, onde cada $Q_i'$ é um $(s_i,y)$-caminho, para $i \in \{1,\dots,c_G - 1\}$, e $Q_{c_G}$ é um $(v,y)$-caminho.
+obtemos uma coleção de $(x,y)$-caminhos internamente disjuntos $Q_1', Q_2', \dots, Q_{C_G}'$, onde cada $Q_i'$ é um $(s_i,y)$-caminho, para $i \in \{1,\dots,c_G - 1\}$, e $Q_{c_G}$ é um $(v,y)$-caminho. Veja a Figura~\ref{fig:contract_x} abaixo.
+\begin{figure}[H]
+  \centering
+  \includegraphics{g_contract_x.pdf}
+  \caption{caminhos internamente disjuntos $Q_1', Q_2', \dots, Q_{C_G}'$ em~$G/X$.}
+  \label{fig:contract_x}
+\end{figure}
+
 
 Podemos combinar as coleções $\{P_1', \dots, P_{c_G}'\}$ e $\{Q_1', \dots, Q_{c_G}'\}$ numa coleção de $(x,y)$-caminhos internamente disjuntos em $G$:
 \[\{P_1'Q_1', \dots, P_{c_G}'Q_{c_G}'\}.\]
-Isso é uma contradição com \eqref{eq:pG_equal_cG_minus_1}.
+Veja a Figura~\ref{fig:connector_in_G} abaixo.
+\begin{figure}[H]
+  \centering
+  \includegraphics{connector_in_G.pdf}
+  \caption{$(x,y)$-caminhos internamente disjuntos $P_1'Q_1', \dots, P_{c_G}'Q_{c_G}'$ em $G$.}
+  \label{fig:connector_in_G}
+\end{figure}
+ Isso é uma contradição com \eqref{eq:pG_equal_cG_minus_1}.
 \end{proof}
 
 %   A prova é por indução em~$m$. Para estabelecermos a base da indução, devemos provar que o teorema vale para todo o grafo vazio com $n \geq 2$ vértices. De fato, em qualquer grafo vazio~$E_n$, se tomarmos dois vértices $x \neq y$, não há caminho de $x$ a~$y$ e, portanto, $p(x,y) = c(x,y) = 0$.
