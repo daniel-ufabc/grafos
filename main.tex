@@ -739,20 +739,105 @@ Veja a Figura~\ref{fig:connector_in_G} abaixo.
 % Pelo princípio de indução finita, segue a validade do teorema.
 %\end{proof}
 
+\subsection {Grafos $k$-conexos}
 
-Enunciar a versão do teorema de menger para caminhos aresta disjuntos
+Para $k > 0$, dizemos que um grafo~$G$ é \emph{$k$-conexo} se $n > k$
+e, para qualquer conjunto de vértices $S \subseteq V$ com $|S| < k$, o
+grafo $G - S$ é conexo.
 
+O a versão do Teorema de Menger que vimos na seção anterior
+(Teorema~\ref{teor:menger}) é equivalente ao
+Teorema~\ref{teor:menger2} abaixo.
 
-Explicar o que é multigrafo
+\begin{teor}
+  \label{teor:menger2}
+  Um grafo $G$ é $k$-conexo se e somente se, para todo par de vértices
+  $x,y \in V$, tivermos $p(x,y) \geq k$.
+\end{teor}
 
-Falar do Fan Lemma 
+\begin{exer}
+  \label{exer:G_minus_e_connected}
+  Mostre que, se $G$ é $k$-conexo, então $G - e$ é $(k-1)$-conexo,
+  qualquer que seja a aresta $e \in E$.
+\end{exer}
 
+\begin{exer}
+  Prove o Teorema~\ref{teor:menger2} usando o
+  Teorema~\ref{teor:menger} e o
+  Exercício~\ref{exer:G_minus_e_connected}.
+\end{exer}
 
+\begin{lema}
+  \label{lema:still_k_connected}
+  Seja $G$ um grafo $k$-conexo. Seja $H$ um grafo construído a partir de $G$ da seguinte maneira:
+  \begin{enumerate}
+  \item escolha um conjunto $N \subseteq V_G$, com $|N| \geq k$;
+  \item acrescente um novo vértice $y$ ao grafo;
+  \item acrescente a aresta $yz$, para cada $z \in N$.
+  \end{enumerate}
+  Nessas condições, $H$ também é $k$-conexo.
+\end{lema}
 
+\begin{exer}
+  Prove o Lema~\ref{lema:still_k_connected}.
+\end{exer}
 
+\begin{teor}
+  \label{teor:menger3}
+  Seja $G$ um grafo $k$-conexo. Se~$X$ e~$Y$ são subconjuntos de $V$, ambos com pelo menos $k$ vértices, então existe uma coleção de $(X,Y)$-caminhos\footnote{Um $(X,Y)$-caminho é um caminho que possui uma extremidade em $X$ e a outra extremidade em $Y$. Se $v \in X \cap Y$, então a sequência unitária $v$ é considerada como sendo um $(X,Y)$-caminho.} totalmente\footnote{Uma coleção de caminhos é chamada de totalmente disjunta se, dois a dois, os caminhos não compartilham vértices, nem mesmo suas extremidades.} disjuntos com pelo menos $k$ caminhos.
+\end{teor}
 
+\begin{exer}
+  Use o Lema~\ref{lema:still_k_connected} e o Teorema~\ref{teor:menger2} para dar uma demonstração do Teorema~\ref{teor:menger3}.
+\end{exer}
 
+Para podermos enunciar o próximo lema, que é conhecido, em inglês, como \emph{The Fan Lemma}, precisamos definir um novo conceito. Dado um vértice $v \in V$ e um subconjunto $W \subseteq V$, com $x \not\in W$, um $(v,W)$-\emph{fan} é uma coleção de caminhos de $v$ para $W$ tal que quaisquer dois caminhos compartilham somente o vértice $x$. 
 
+\begin{lema}[Fan Lemma]
+  \label{lema:fan}
+  Se $G$ é $k$-conexo, então $G$ possui um $(v,W)$-fan com pelo menos $k$ caminhos, quaisquer que sejam $v \in V$ e $W \subseteq V \setminus \{v\}$ com $|W| \geq k$.
+\end{lema}
+
+\begin{exer}
+  Prove o \emph{Fan Lemma}.
+\end{exer}
+
+\begin{exer}
+  Prove a recíproca do \emph{Fan Lemma}.
+\end{exer}
+
+\begin{exer}
+  Se $G$ é um grafo $k$-conexo, então, para qualquer $W \subseteq V$ com
+  $|W| = k$, existe um circuito em $G$ que contém
+  todos os vértices de $W$.
+\end{exer}
+
+\begin{exer}
+  Mostre que a recíproca do exercício anterior é verdadeira, quando $k = 2$.
+\end{exer}
+
+\begin{exer}[Opcional]
+  Prove a seguinte generalização do \emph{Fan Lemma}. Seja~$k$ um inteiro positivo e sejam sejam $k_1,\dots,k_t$ inteiros positivos que somam~$k$. Se~$G$ é $k$-conexo, então, para qualquer escolha de vértices $v_1,\dots,v_t$ distintos e de conjuntos $W_1,\dots,W_t \subseteq V \setminus \{v_1,\dots,v_t\}$ dois a dois disjuntos, $G$ possui um $(v_i,W_i)$-fan com $k_i$ caminhos, para cada $i \in \{1, \dots, t\}$, e esses fans são dois a dois disjuntos.
+\end{exer}
+
+Para o próximo exercício é necessário definir \emph{subdivisão} de um grafo.
+Dado um grafo $G$ e uma aresta $uv \in E_G$, \emph{subdividir} a aresta $uv$ significa construir um grafo a partir de $G$ da seguinte forma:
+\begin{enumerate}
+\item remover a aresta $uv$;
+\item acrescentar um novo vértice $w$;
+\item acrescentar as arestas $uw$ e $vw$.
+\end{enumerate}
+\begin{figure}[H]
+  \centering
+  \includegraphics{subdividir.pdf}
+  \caption{um grafo $G$ e uma subdivisão de $G$.}
+  \label{fig:subdiv}
+\end{figure}
+Uma \emph{subdivisão} de $G$ é qualquer grafo que pode ser obtido a partir de $G$ por sucessivas operações de subdivisões de arestas. Em uma subdivisão de $G$, os vértices que são originais de $G$ são chamados de \emph{âncoras}.
+
+\begin{exer}[Opcional]
+  Mostre que se $G$ é $k^2$-conexo, com $k \geq 2$, então para quaisquer vértices $v_1,\dots,v_k \in V$, o grafo $G$ possui uma subdivisão de $K_k$ cujos vértices âncoras são $v_1,\dots,v_k$.  
+\end{exer}
 
 \section{Mais exemplos de grafos}
 
