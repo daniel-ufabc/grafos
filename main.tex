@@ -610,7 +610,7 @@ Note que $|S| = |\mathcal{P}|$. Pelo Exercício~\ref{exer:min_max}, temos que $c
 
 \begin{teor}
 \label{teor:menger}
-Se~$G$ é um grafo de ordem $n \geq 2$ e $x,y$ são vértices distintos em~$G$, então
+Se~$G$ é um grafo de ordem $n \geq 2$ e $x,y$ são vértices distintos em~$G$ com $xy \neq E$, então
 \begin{equation}
   \label{eq:min_max_conn2}
   c(x,y) = p(x,y).
@@ -817,27 +817,78 @@ Para podermos enunciar o próximo lema, que é conhecido, em inglês, como \emph
 \end{exer}
 
 \begin{exer}[Opcional]
-  Prove a seguinte generalização do \emph{Fan Lemma}. Seja~$k$ um inteiro positivo e sejam sejam $k_1,\dots,k_t$ inteiros positivos que somam~$k$. Se~$G$ é $k$-conexo, então, para qualquer escolha de vértices $v_1,\dots,v_t$ distintos e de conjuntos $W_1,\dots,W_t \subseteq V \setminus \{v_1,\dots,v_t\}$ dois a dois disjuntos, $G$ possui um $(v_i,W_i)$-fan com $k_i$ caminhos, para cada $i \in \{1, \dots, t\}$, e esses fans são dois a dois disjuntos.
+  Prove a seguinte generalização do \emph{Fan Lemma}. Seja~$k$ um
+  inteiro positivo e sejam sejam $k_1,\dots,k_t$ inteiros positivos
+  que somam~$k$. Se~$G$ é $k$-conexo, então, para qualquer escolha de
+  vértices $v_1,\dots,v_t$ distintos para qualquer conjunto
+  $W \subseteq V \setminus \{v_1,\dots,v_t\}$ com $|W| = k$, existe,
+  para cada $i \in \{1, \dots, t\}$, um $(v_i,W)$-fan com $k_i$
+  caminhos, e esses fans são dois a dois disjuntos nos vértices.
 \end{exer}
 
-Para o próximo exercício é necessário definir \emph{subdivisão} de um grafo.
-Dado um grafo $G$ e uma aresta $uv \in E_G$, \emph{subdividir} a aresta $uv$ significa construir um grafo a partir de $G$ da seguinte forma:
-\begin{enumerate}
-\item remover a aresta $uv$;
-\item acrescentar um novo vértice $w$;
-\item acrescentar as arestas $uw$ e $vw$.
-\end{enumerate}
-\begin{figure}[H]
-  \centering
-  \includegraphics{subdividir.pdf}
-  \caption{um grafo $G$ e uma subdivisão de $G$.}
-  \label{fig:subdiv}
-\end{figure}
-Uma \emph{subdivisão} de $G$ é qualquer grafo que pode ser obtido a partir de $G$ por sucessivas operações de subdivisões de arestas. Em uma subdivisão de $G$, os vértices que são originais de $G$ são chamados de \emph{âncoras}.
+% Para o próximo exercício é necessário definir \emph{subdivisão} de um grafo.
+% Dado um grafo $G$ e uma aresta $uv \in E_G$, \emph{subdividir} a aresta $uv$ significa construir um grafo a partir de $G$ da seguinte forma:
+% \begin{enumerate}
+% \item remover a aresta $uv$;
+% \item acrescentar um novo vértice $w$;
+% \item acrescentar as arestas $uw$ e $vw$.
+% \end{enumerate}
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics{subdividir.pdf}
+%   \caption{um grafo $G$ e uma subdivisão de $G$.}
+%   \label{fig:subdiv}
+% \end{figure}
+% Uma \emph{subdivisão} de $G$ é qualquer grafo que pode ser obtido a partir de $G$ por sucessivas operações de subdivisões de arestas. Em uma subdivisão de $G$, os vértices que são originais de $G$ são chamados de \emph{âncoras}.
 
-\begin{exer}[Opcional]
-  Mostre que se $G$ é $k^2$-conexo, com $k \geq 2$, então para quaisquer vértices $v_1,\dots,v_k \in V$, o grafo $G$ possui uma subdivisão de $K_k$ cujos vértices âncoras são $v_1,\dots,v_k$.  
+% \begin{exer}[Opcional]
+%   Mostre que se $G$ é $k^2$-conexo, com $k \geq 2$, então para quaisquer vértices $v_1,\dots,v_k \in V$, o grafo $G$ possui uma subdivisão de $K_k$ cujos vértices âncoras são $v_1,\dots,v_k$.  
+% \end{exer}
+
+\begin{exer}
+  Mostre que, num grafo conexo, quaisquer dois caminhos mais longos se intersectam.
 \end{exer}
+
+\begin{exer}
+  Mostre que todo grafo conexo $G$ possui um vértice~$v$ tal que $G-v$ é conexo.
+\end{exer}
+
+\section {Outras versões do Teorema de Menger}
+
+O Teorema de menger é um resultado bastante profundo e tem relação com uma série de outros resultados e problemas em grafos. Ele é um resultado muito robusto no seguinte sentido: se mudarmos um pouco as definições de grafo ou caminho ou conexidade, o teorema permanece verdadeiro. A seguir, veremos algumas variantes do Teorema de Menger que são verdadeiras.
+
+A primeira versão que vamos enunciar envolve o conceito de aresta-conexidade. Um grafo $G$ é $k$-aresta-conexo se, para todo conjunto $F \in E_G$ com $|F| < k$, tem-se que $G - F$ é conexo. 
+
+\begin{teor}[Teorema de Menger, versão arestas]
+  \label{teor:menger4}
+  Um grafo é $k$-aresta-conexo se e somente se, para todo par de vértices distintos $x,y \in V$, existem $k$ caminhos de~$x$ a~$y$ dois a dois disjuntos nas arestas.
+\end{teor}
+
+Essa variante do Teorema de Menger também é verdadeira ao trocarmos a palavra grafo por multigrafo. Um \emph{multigrafo} é uma tripla ordenada $(V,E,\phi)$ onde $V$ é o conjunto de vértices, $E$ é o conjunto de arestas e $\phi$ é uma função de incidência da forma:
+\[\phi : E \rightarrow \binom{V}{2},\]
+onde $\binom{V}{2}$ denota o conjunto de todos os pares não ordenados de elementos de~$V$. As extremidades de uma aresta $e \in E$ são os vértices em $\phi(e)$. Um \emph{passeio} em um multigrafo é uma sequência $v_0e_0v_1e_1 \cdots v_{k-1}e_{k-1}v_k$ onde, para todo $i \in \{1,\dots,k\}$, tem-se $\phi(e_{i-1}) = v_{i-1}v_i$. A definição de \emph{caminho} é a mesma dada anteriormente: um passeio que não repete vértices. A definição de \emph{conexo} também é a mesma em grafos e multigrafos: para toda partição de $V$ em conjuntos $X$ e $Y$, existe uma aresta $e \in E$ com uma extremidade em~$X$ e outra em~$Y$.
+
+\subsubsection {Grafos dirigidos}
+
+Um \emph{grafo dirigido} ou \emph{digrafo} é um par $(V,A)$ onde $V$ é um conjunto de vértices e $A$ é um conjunto de pares ordenados de $V$, chamados \emph{arcos}. Ou seja, o conjunto de arcos de um digrafo satisfaz $A \subseteq V^2$. Quando desenhamos o diagram de um grafo dirigido, é comum colocar flexas nas linhas que ligam dois vértices para indicar a ordem dos vértices no arco correspondente. 
+
+Um \emph{passeio} num grafo dirigido é uma sequência de vértices distintos $v_0v_1 \dots v_k$ com $(v_{i-1},v_i) \in A$ para todo $i \in \{1,\dots,k\}$. Novamente, um \emph{caminho} é um passeio que não repete vértice. Vamos adaptar as definições de $p(x,y)$ e~$c(x,y)$ para digrafos. O parâmetro $p(x,y)$ é o número máximo de caminhos internamente disjuntos de~$x$ até~$y$. O parâmetro $c(x,y)$ é definido quando $(x,y) \not\in A$, e é o número mínimo de vértices num conjunto $S\subseteq V \setminus\{x,y\}$ tal que $G - S$ não possui caminho de~$x$ até~$y$.
+
+O Teorema~\ref{teor:menger} é verdadeiro se trocarmos a palavra \emph{grafo} por \emph{digrafo} e se trocarmos a condição $xy \not\in E$ por $(x,y) \not\in A$. 
+
+Uma versão para arcos do Teorema~\ref{teor:menger} também é verdadeira. Defina $p'(x,y)$ como o número máximo de caminhos disjuntos nos arcos de~$x$ até~$y$. Defina $c'(x,y)$ como o número mínimo de arcos cuja remoção destroi todos os caminhos de~$x$ até~$y$. 
+
+\begin{teor}
+  \label{teor:menger5}
+  Se~$G$ é um grafo dirigido de ordem $n \geq 2$ e $x,y$ são vértices distintos em~$G$ com $(x,y) \neq A$, então
+\begin{equation}
+  \label{eq:min_max_conn2}
+  c'(x,y) = p'(x,y).
+\end{equation}
+\end{teor}
+
+O teorema acima também seria verdadeiro no contexto de multigrafos dirigidos, se quiséssemos definir tal objeto. Um exercício interessante seria adaptar as resoluções dos resultados e exercícios das seções anteriores para todas as variantes de grafos que vimos nesta seção.
+
 
 \section{Mais exemplos de grafos}
 
@@ -855,7 +906,7 @@ O caminho $P_n$ é um grafo bipartido. A estrela $S_{n-1}$ também. $K_2$ é bip
 \end{exem}
 
 \begin{exer}
-Mostre que qualquer hipercubo $Q_k$ é bipartido. 
+  Mostre que qualquer hipercubo $Q_k$ é bipartido. 
 \end{exer}
 
 \begin{exer}
@@ -864,7 +915,7 @@ Mostre que qualquer grade $G_{s \times t}$ é bipartido.
 
 %% B&M 1.1.2 (b)
 \begin{exer}
-Mostre que todo grafo bipartido satisfaz $m \leq n^2/4$.
+  Mostre que todo grafo bipartido satisfaz $m \leq n^2/4$.
 \end{exer}
 
 \begin{exer}
@@ -877,14 +928,38 @@ Mostre diretamente que qualquer circuito ímpar $C_{2k+1}$ não é um grafo bipa
 Mostre que união disjunta de grafos bipartidos é um grafo bipartido.
 \end{exer}
 
+\begin{exer}
+  Mostre que, se um grafo tem um passeio fechado de comprimento ímpar, então ele tem um circuito de comprimento ímpar.
+\end{exer}
+
 \begin{prop}
-Um grafo $G$ é bipartido se e somente se $G$ não possui um circuito ímpar. 
+  Um grafo é bipartido se e somente se ele não possui um circuito ímpar. 
 \end{prop}
 
 \begin{proof}
-O Exercício~\ref{exer:cimpar} acima estabelece uma das direções da proposição. Resta mostrar a direção recíproca. Mais especificamente, resta mostrar que um grafo que não possui um circuito ímpar é bipartido. 
-Note também que, pelo Exercício~\ref{exer:uni_bip}, se cada componente conexa de~$G$ for um grafo bipartido, então~$G$ é bipartido.
+  Em sala.
 \end{proof}
+
+\begin{exer}
+  Mostre que, se $\delta \geq n/2$, então o grafo é conexo.
+\end{exer}
+
+\begin{teor}[Teorema de Dirac]
+  Se $\delta \geq n/2$, então o grafo possui um circuito Hamiltoniano.
+\end{teor}
+
+\begin{teor}[Teorema de Ore]
+  \label{teor:ore}
+  Suponha que, num grafo, para todo par de vértices $xy \not\in E$,
+  vale que $d(x) + d(y) \geq n$. Mostre que existe um circuito nesse
+  grafo que passa por todos os vértices. (Tal circuito é chamado de circuito Hamiltoniano.)
+\end{teor}
+
+\begin{proof}
+  Em sala.
+\end{proof}
+
+
 
 \bibliographystyle{plain}
 \bibliography{main.bib}
