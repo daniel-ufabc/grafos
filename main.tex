@@ -959,7 +959,36 @@ Mostre que união disjunta de grafos bipartidos é um grafo bipartido.
   Em sala.
 \end{proof}
 
+\noindent Na verdade, mostramos os Teoremas~2, 3 e~4 da Seção 1, Capítulo~IV de~\cite{Bollobas}.\bigskip
 
+\noindent Teorema de Turán: teorema 7 da Seção~2, Capítulo~IV de~\cite{Bollobas}.\bigskip
+
+\noindent Teoria de Ramsey: Seção 12.3 de~\cite{BondyMurty}, até o fim da prova do Teorema~12.8.
+
+\begin{exer}
+  Mostre que, se $\delta \geq k + n / 2$, então $G$ é $k$-conexo. 
+\end{exer}
+
+\begin{exer}
+  Seja $G$ um grafo bipartido com classes $A$ e $B$ (ou seja, todas as arestas devem ter uma extremidade em $A$ e outra em $B$) com $|A| = |B| = n$. Mostre que, se $G$ não contém $(k+1)$ arestas independentes (arestas que não se intersectam duas a duas), então 
+\[ m \leq k n. \]
+\end{exer}
+
+\begin{exer}
+  Mostre que, se $\delta \geq \left \lfloor (k - 1) n / k \right \rfloor + 1$, então $G$ contém um clique com $k + 1$ vértices.
+\end{exer}
+
+\begin{exer}
+  Seja $G$ um grafo $k$-conexo. Suponha que para todo $S \subseteq V$ com $|S| \geq k + 1$, o subgrafo $G[S]$ tenha pelo menos uma aresta. Mostre que $G$ é Hamiltoniano. 
+\end{exer}
+
+\begin{teor}[Erd\H{o}s-Szekeres]
+Se $k$ e $\ell$ são inteiros positivos, então qualquer sequência de inteiros com mais que $k \ell$ elementos possui uma sub\-se\-quên\-cia não-decrescente de tamanho $k$ ou uma subsequência não-crescente de tamanho $\ell$.
+\end{teor}
+
+\begin{exer}
+  Use o Teorema de Ramsey para mostrar a seguinte versão enfraquecida do Teorema de Erd\H{o}s-Szekeres: para todo $k, \ell > 0$ existe $n$ tal que qualquer sequência de inteiros com $n$ elementos possui uma subsequência não decrescente de tamanho $k$ ou uma subsequência não-crescente de tamanho $\ell$. Ou seja, prove a penas que existe um tal $n$, não precisa provar que o menor $n$ satisfaz $n = k \ell + 1$.
+\end{exer}
 
 \bibliographystyle{plain}
 \bibliography{main.bib}
