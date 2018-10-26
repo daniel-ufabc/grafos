@@ -990,6 +990,17 @@ Se $k$ e $\ell$ são inteiros positivos, então qualquer sequência de inteiros 
   Use o Teorema de Ramsey para mostrar a seguinte versão enfraquecida do Teorema de Erd\H{o}s-Szekeres: para todo $k, \ell > 0$ existe $n$ tal que qualquer sequência de inteiros com $n$ elementos possui uma subsequência não decrescente de tamanho $k$ ou uma subsequência não-crescente de tamanho $\ell$. Ou seja, prove a penas que existe um tal $n$, não precisa provar que o menor $n$ satisfaz $n = k \ell + 1$.
 \end{exer}
 
+\begin{teor}[Teorema de Schur]
+  Para todo $k$ existe $n$ (em função de $k$) tal que, se os números
+  em $\{1,2,\dots,n\}$ forem particionados em $k$ classes $V_1, \dots, V_k$, então
+  existem $x,y \in \{1,\dots,n\}$ tais que $x$, $y$, e $x + y$ todos
+  pertencem à mesma classe~$V_i$ para algum~$i$.
+\end{teor}
+
+\begin{exer}
+  Use o Teorema de Ramsey (versão p/ $k$ cores) para provar o Teorema de Schur. [Dica. Atribua $k$ cores aos pares da forma $xy$ de acordo com a classe que contém o número $|x - y|$. Isto é, a cor de $xy$ é~$i$ se $|x - y| \in V_i$.]
+\end{exer}
+
 \bibliographystyle{plain}
 \bibliography{main.bib}
 \end{document}
